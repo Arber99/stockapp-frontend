@@ -1,0 +1,81 @@
+<div
+  class="flex pl-12 pr-4 lg:pl-16 lg:pr-16 absolute justify-between z-[100] bg-white border-zinc-400 h-[72px] w-full"
+>
+  <div class="flex items-center">
+    <a href="'/'">
+      <h1 class="text-base font-bold text-2xl text-black">Stockify</h1>
+    </a>
+  </div>
+  <ul
+    class="relative flex flex-row text-base space-x-12 items-center"
+    *ngIf="currentWindowWidth > 1280; else menu"
+  >
+    <li>
+      <a href="'/leichtesprache'" class="text-zinc-800"
+        ><fa-icon
+          [icon]="faBookOpenReader"
+          aria-hidden="true"
+          class="mr-2"
+        ></fa-icon
+        >Easy Language</a
+      >
+    </li>
+    <li>
+      <a href="'/barrierefreiheit'" class="text-zinc-800"
+        ><fa-icon
+          [icon]="faCircleInfo"
+          aria-hidden="true"
+          class="mr-2"
+        ></fa-icon>
+        Accessibility</a
+      >
+    </li>
+    <li
+      class="text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-zinc-800 before:-translate-x-6"
+    >
+      <a href="#">About</a>
+    </li>
+    <li class="text-black font-bold">
+      <a href="#">Login</a>
+    </li>
+    <li class="text-white font-bold">
+      <a href="#" class="bg-green-500 p-2 pl-3 pr-3">Sign up</a>
+    </li>
+  </ul>
+  <ng-template #menu>
+    <button
+      aria-label="Menü öffnen"
+      [attr.aria-expanded]="isMenu"
+      (click)="onMenu(isMenu)"
+    >
+      <fa-icon [icon]="faBars" class="p-6 text-black"></fa-icon>
+    </button>
+  </ng-template>
+</div>
+<ul
+  class="flex flex-col xl:hidden items-end overflow-y-auto gap-3 pt-4 pb-6 shadow-md drop-shadow-md pl-8 pr-8 lg:pl-16 lg:pr-16 fixed top-0 z-[100] bg-white border-b border-zinc-400 mt-[72px] max-h-[50vh] w-full font-semibold text-black"
+  *ngIf="isMenu"
+>
+  <li>Lorem</li>
+  <li><a href="#" (click)="onMenu(false)">Ipsum</a></li>
+  <li>Dolor</li>
+  <li class="text-right">
+    <a href="#" class="text-zinc-800" (click)="onMenu(false)"
+      ><fa-icon [icon]="faCircleInfo" aria-hidden="true" class="mr-2"></fa-icon>
+      Accessibility</a
+    >
+  </li>
+  <li class="text-right">
+    <a href="#" class="text-zinc-800" (click)="onMenu(false)"
+      ><fa-icon
+        [icon]="faBookOpenReader"
+        aria-hidden="true"
+        class="mr-2"
+      ></fa-icon
+      >Easy Language</a
+    >
+  </li>
+  <li>
+    <a href="#" class="text-zinc-800" (click)="onMenu(false)">About</a>
+  </li>
+</ul>
