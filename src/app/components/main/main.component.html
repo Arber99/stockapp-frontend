@@ -1,28 +1,33 @@
 <div
-  class="flex flex-col lg:flex-row pl-12 gap-8 lg:gap-0 lg:pr-48 lg:pl-48 lg:justify-between h-[calc(max(500px,_100vh))]"
+  class="grid grid-cols-1 lg:grid-cols-2 pl-12 pr-12 gap-8 lg:gap-16 lg:pr-48 lg:pl-48 lg:justify-between min-h-[calc(max(500px,_100vh))]"
 >
-  <div class="flex flex-col gap-4 relative pt-28 lg:pt-0 lg:top-[25%] pb-8">
-    <h1 class="font-bold text-4xl pb-2 lg:text-7xl text-zinc-800">
-      Learn Investing
+  <div class="flex flex-col gap-4 relative pt-32 lg:pt-0 lg:top-[25%] pb-8">
+    <h1 class="font-bold text-4xl pb-2 lg:text-7xl text-black">
+      Learn Investing For Free In A Simple Way
     </h1>
-    <h1 class="font-bold text-4xl pb-2 lg:text-7xl text-zinc-800">For Free</h1>
-    <h1 class="font-bold text-4xl pb-2 lg:text-7xl text-zinc-800">Now</h1>
+    <div class="pt-8 text-sm sm:text-lg">
+      <p>
+        Have you ever wanted to know how to <b>invest</b>, but never had the
+        time to actually learn it? This website aims to teach you the
+        fundamentals of investing <b>without</b> any intention to profit off of
+        you. No books with over 100 pages, no paid courses, no ads. Just going
+        straight to the <b>point</b>.
+      </p>
+    </div>
     <div class="pt-14">
       <button
         href="#"
-        class="bg-blue-500 p-2 pl-3 pr-5 text-white text-lg font-semibold"
+        class="bg-indigo-400 p-2 pl-3 pr-3 text-white text-lg font-semibold"
       >
-        <fa-icon class="pr-4" [icon]="faArrowDown"></fa-icon>
-        <span>Get Started</span>
+        <span class="font-bold">Get Started Now</span>
       </button>
     </div>
     <div>
       <button
         href="#"
-        class="bg-green-500 p-2 pl-3 pr-5 text-white text-lg font-semibold"
+        class="bg-green-400 p-2 pl-3 pr-3 text-white text-lg font-semibold"
       >
-        <fa-icon class="pr-4" [icon]="faUser"></fa-icon>
-        <span>Sign Up</span>
+        <span class="font-bold">Sign Up</span>
       </button>
     </div>
   </div>
