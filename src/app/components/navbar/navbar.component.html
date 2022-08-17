@@ -1,9 +1,9 @@
 <div
-  class="flex pl-12 pr-4 lg:pl-16 lg:pr-16 absolute justify-between z-[100] bg-white border-zinc-400 h-[72px] w-full"
+  class="flex pl-12 pr-4 lg:pl-16 lg:pr-16 absolute justify-between z-[100] border-zinc-400 h-[72px] w-full"
 >
   <div class="flex items-center">
-    <a href="'/'">
-      <h1 class="text-base font-bold text-2xl text-black">Stockify</h1>
+    <a [routerLink]="'/'">
+      <h1 class="text-base font-bold text-2xl text-white dark:text-black">Stockify</h1>
     </a>
   </div>
   <ul
@@ -11,7 +11,7 @@
     *ngIf="currentWindowWidth > 1280; else menu"
   >
     <li>
-      <a href="'/easylanguage'" class="text-zinc-800"
+      <a href="'/easylanguage'" class="text-white dark:text-zinc-800"
         ><fa-icon
           [icon]="faBookOpenReader"
           aria-hidden="true"
@@ -21,7 +21,7 @@
       >
     </li>
     <li>
-      <a href="'/accessibility'" class="text-zinc-800"
+      <a href="'/accessibility'" class="text-white dark:text-zinc-800"
         ><fa-icon
           [icon]="faCircleInfo"
           aria-hidden="true"
@@ -31,11 +31,11 @@
       >
     </li>
     <li
-      class="text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-zinc-800 before:-translate-x-6"
+      class="text-white dark:text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-white dark:before:bg-zinc-800 before:-translate-x-6"
     >
       <a href="#">About</a>
     </li>
-    <li class="text-black font-bold">
+    <li class="text-white dark:text-black font-bold">
       <a href="#">Login</a>
     </li>
     <li class="text-white font-bold">
@@ -48,7 +48,7 @@
       [attr.aria-expanded]="isMenu"
       (click)="onMenu(isMenu)"
     >
-      <fa-icon [icon]="faBars" class="p-6 text-black"></fa-icon>
+      <fa-icon [icon]="faBars" class="p-6 text-white dark:text-black"></fa-icon>
     </button>
   </ng-template>
 </div>
