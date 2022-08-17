@@ -39,7 +39,7 @@
       <a href="#">Login</a>
     </li>
     <li class="text-white font-bold">
-      <a href="#" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
+      <a [routerLink]="'/signup'" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
     </li>
   </ul>
   <ng-template #menu>
@@ -58,7 +58,7 @@
 >
   <li>
     <button
-      href="#"
+      [routerLink]="'/signup'"
       class="bg-green-400 w-[82px] p-1 pl-2 pr-2 text-white font-semibold"
     >
       <span class="font-bold">Sign Up</span>
@@ -66,7 +66,7 @@
   </li>
   <li>
     <button
-      href="#"
+      [routerLink]="'/login'"
       class="bg-indigo-400 w-[82px] p-1 pl-2 pr-2 text-white font-semibold"
     >
       <span class="font-bold">Log In</span>
