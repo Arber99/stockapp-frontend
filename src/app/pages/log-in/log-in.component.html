@@ -1,25 +1,14 @@
-<comp-navbar background="bg-green-400"></comp-navbar>
+<comp-navbar background="bg-indigo-400"></comp-navbar>
 <div
-  class="grid grid-cols-1 xl:grid-cols-2 pl-12 pr-12 xl:gap-24 xl:pr-48 xl:pl-48 xl:justify-between min-h-[calc(max(500px,_100vh))] bg-green-400"
+  class="grid grid-cols-1 xl:grid-cols-2 pl-12 pr-12 xl:gap-24 xl:pr-48 xl:pl-48 xl:justify-between min-h-[calc(max(500px,_100vh))] bg-indigo-400"
 >
   <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-48 pb-8 text-white">
-    <h1 class="font-bold text-4xl pb-2 xl:text-7xl">
-      Start Trading With Fake Money
-    </h1>
+    <h1 class="font-bold text-4xl pb-2 xl:text-7xl">Log in to your account</h1>
     <form
-      [formGroup]="signUpForm"
+      [formGroup]="logInForm"
       (ngSubmit)="onClickSubmit()"
       class="grid grid-cols-1 gap-4 mt-8 lg:mt-12"
     >
-      <div>
-        <label class="font-bold block">First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          formControlName="firstName"
-          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none focus:border-2 focus:border-zinc-600"
-        />
-      </div>
       <div>
         <label class="font-bold block">E-Mail</label>
         <input
@@ -41,9 +30,9 @@
       <button
         type="submit"
         value="submit"
-        class="bg-white p-2 pl-3 pr-3 mt-4 font-bold text-green-500 w-min"
+        class="bg-white p-2 pl-3 pr-3 mt-4 font-bold text-indigo-500 w-min"
       >
-        Register
+        Login
       </button>
     </form>
   </div>

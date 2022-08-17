@@ -3,21 +3,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
-  selector: 'page-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  selector: 'app-log-in',
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class LogInComponent implements OnInit {
   constructor(private account: AccountService) {}
 
   ngOnInit(): void {}
-  signUpForm = new FormGroup({
-    firstName: new FormControl(),
+  logInForm = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
   });
 
   onClickSubmit() {
-    this.account.signUp(this.signUpForm.value)
+    this.account.logIn(this.logInForm.value);
   }
 }

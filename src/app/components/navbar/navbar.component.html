@@ -3,7 +3,9 @@
 >
   <div class="flex items-center">
     <a [routerLink]="'/'">
-      <h1 class="text-base font-bold text-2xl text-white dark:text-black">Stockify</h1>
+      <h1 class="text-base font-bold text-2xl text-white dark:text-black">
+        Stockify
+      </h1>
     </a>
   </div>
   <ul
@@ -35,11 +37,17 @@
     >
       <a href="#">About</a>
     </li>
-    <li class="text-white dark:text-black font-bold">
-      <a href="#">Login</a>
+    <li class="text-white dark:text-black font-bold" *ngIf="!isAuthorized">
+      <a [routerLink]="'/login'">Login</a>
     </li>
-    <li class="text-white font-bold">
+    <li class="text-white font-bold" *ngIf="!isAuthorized">
       <a [routerLink]="'/signup'" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
+    </li>
+    <li class="text-white dark:text-black font-bold" *ngIf="isAuthorized">
+      <span>Hello,&nbsp;&nbsp;{{userId}}</span>
+    </li>
+    <li class="text-white font-bold" *ngIf="isAuthorized">
+      <a [routerLink]="'/'" (click)="logOut()" class="bg-red-400 p-2 pl-3 pr-3">Log out</a>
     </li>
   </ul>
   <ng-template #menu>
@@ -53,13 +61,16 @@
   </ng-template>
 </div>
 <ul
-  class="flex flex-col xl:hidden items-end overflow-y-auto gap-3 pt-4 pb-6 pl-8 pr-8 lg:pl-16 lg:pr-16 fixed top-0 z-[100] bg-green-400 dark:bg-white border-b border-white dark:border-zinc-400 mt-[72px] max-h-[50vh] w-full font-semibold text-black"
+  class="flex flex-col xl:hidden items-end overflow-y-auto gap-3 pt-4 pb-6 pl-8 pr-8 lg:pl-16 lg:pr-16 fixed top-0 z-[100] {{
+    background
+  }} border-b border-white dark:border-zinc-400 mt-[72px] max-h-[50vh] w-full font-semibold text-black"
   *ngIf="isMenu"
 >
   <li>
     <button
       [routerLink]="'/signup'"
       class="dark:bg-green-400 dark:w-[82px] dark:p-1 dark:pl-2 dark:pr-2 text-white font-semibold"
+      *ngIf="!isAuthorized"
     >
       <span class="font-bold">Sign Up</span>
     </button>
@@ -68,6 +79,7 @@
     <button
       [routerLink]="'/login'"
       class="dark:bg-indigo-400 dark:w-[82px] dark:p-1 dark:pl-2 dark:pr-2 text-white font-semibold"
+      *ngIf="!isAuthorized"
     >
       <span class="font-bold">Log In</span>
     </button>
