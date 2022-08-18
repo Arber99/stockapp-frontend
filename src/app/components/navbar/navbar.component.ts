@@ -11,6 +11,7 @@ import { AccountService } from 'src/app/services/account.service';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
+  
   constructor(private account: AccountService) {
     this.account.userData.subscribe((data) => {
       this.userId = data;

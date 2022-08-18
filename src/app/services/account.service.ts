@@ -18,15 +18,18 @@ export class AccountService {
 
   userData = new Subject<any>();
   isAuthorized = new Subject<any>();
+  cash = new Subject<any>();
 
   _userData = '';
   _isAuthorized = false;
+  _cash = 0;
 
   async signUp(dto: any) {
     await this.http
       .post<any>(envConfig.baseUrl + 'auth/signup', dto)
       .subscribe((data) => {
         this.auth.setToken('access_token', data.access_token);
+        this.getUserData();
         this.router.navigate(['/']);
       });
   }
@@ -59,6 +62,7 @@ export class AccountService {
         next: (data: any) => {
           console.log('API CALL');
           this.setUserId(data.firstName);
+          this.setCash(data.cash);
           this.setIsAuthorized(true);
         },
         error: (error) => {
@@ -78,11 +82,20 @@ export class AccountService {
     this._isAuthorized = isAuthorized;
   }
 
+  setCash(cash: number) {
+    this.cash.next(cash);
+    this._cash = cash;
+  }
+
   getIsAuthorized() {
     return this._isAuthorized;
   }
 
   getUserId() {
     return this._userData;
+  }
+
+  getCash() {
+    return this._cash;
   }
 }

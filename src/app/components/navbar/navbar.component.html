@@ -44,10 +44,19 @@
       <a [routerLink]="'/signup'" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="isAuthorized">
-      <span>Hello,&nbsp;&nbsp;{{userId}}</span>
+      <span>Hello,&nbsp;&nbsp;{{ userId }}</span>
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
-      <a [routerLink]="'/'" (click)="logOut()" class="bg-red-400 p-2 pl-3 pr-3">Log out</a>
+      <a
+        [routerLink]="'/dashboard'"
+        class="text-white dark:text-black font-bold"
+        >Dashboard</a
+      >
+    </li>
+    <li class="text-white font-bold" *ngIf="isAuthorized">
+      <a [routerLink]="'/'" (click)="logOut()" class="bg-red-400 p-2 pl-3 pr-3"
+        >Log out</a
+      >
     </li>
   </ul>
   <ng-template #menu>
@@ -69,7 +78,7 @@
   <li>
     <button
       [routerLink]="'/signup'"
-      class="dark:bg-green-400 dark:w-[82px] dark:p-1 dark:pl-2 dark:pr-2 text-white font-semibold"
+      class="text-white dark:text-zinc-800"
       *ngIf="!isAuthorized"
     >
       <span class="font-bold">Sign Up</span>
@@ -78,7 +87,7 @@
   <li>
     <button
       [routerLink]="'/login'"
-      class="dark:bg-indigo-400 dark:w-[82px] dark:p-1 dark:pl-2 dark:pr-2 text-white font-semibold"
+      class="text-white dark:text-zinc-800"
       *ngIf="!isAuthorized"
     >
       <span class="font-bold">Log In</span>
