@@ -1,12 +1,24 @@
 <comp-navbar class="dark"></comp-navbar>
 <div
-  class="grid grid-cols-1 xl:grid-cols-2 pl-12 pr-12 xl:gap-24 xl:pr-48 xl:pl-48 xl:justify-between min-h-[calc(max(500px,_100vh))]"
+  class="flex flex-col pl-12 pr-12 xl:pr-48 xl:pl-48 min-h-[calc(max(500px,_100vh))]"
 >
   <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-48 pb-8">
     <h1 class="font-bold text-4xl pb-2 xl:text-7xl text-black">
       Your portfolio
     </h1>
-    <div class="pt-8 text-sm sm:text-xl text-zinc-900">
-        <span class="text-zinc-900 font-bold text-2xl">{{cash}}</span>
+    <div class="pt-8">
+        <span class="text-zinc-900 font-bold text-3xl">{{cash}}</span>
+        <span class="pl-2 text-md text-green-500 font-bold">(+10.04%)</span>
     </div>
+    <ul class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12">
+      <li>
+        <comp-card-stock company="Microsoft" symbol="MSFT" [price]="140.85" [amount]="15"></comp-card-stock>
+      </li>
+      <li>
+        <comp-card-stock company="Apple" symbol="AAPL" [price]="79.46" [amount]="53"></comp-card-stock>
+      </li>
+      <li>
+        <comp-card-stock company="Tesla" symbol="TSLA" [price]="458.56" [amount]="7"></comp-card-stock>
+      </li>
+    </ul>
   </div>

@@ -15,6 +15,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CardStockComponent } from './components/card-stock/card-stock.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     HomeComponent,
     SignUpComponent,
     LogInComponent,
-    DashboardComponent
+    DashboardComponent,
+    CardStockComponent
   ],
   imports: [
     BrowserModule,
