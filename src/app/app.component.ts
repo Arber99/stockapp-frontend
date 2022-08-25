@@ -11,6 +11,7 @@ export class AppComponent {
   constructor(private account: AccountService) {
     if (localStorage.getItem('access_token')) {
       this.account.getUserData();
+      this.account.getStockData();
     }
   }
 

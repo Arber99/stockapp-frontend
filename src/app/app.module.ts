@@ -16,6 +16,7 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CardStockComponent } from './components/card-stock/card-stock.component';
+import { MarketComponent } from './pages/market/market.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CardStockComponent } from './components/card-stock/card-stock.component
     SignUpComponent,
     LogInComponent,
     DashboardComponent,
-    CardStockComponent
+    CardStockComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

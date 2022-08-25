@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { envConfig } from 'envConfig';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
@@ -19,10 +18,12 @@ export class AccountService {
   userData = new Subject<any>();
   isAuthorized = new Subject<any>();
   cash = new Subject<any>();
+  stocks = new Subject<any>();
 
   _userData = '';
   _isAuthorized = false;
   _cash = 0;
+  _stocks: Record<string, string | number>[] = [];
 
   async signUp(dto: any) {
     await this.http
@@ -30,6 +31,7 @@ export class AccountService {
       .subscribe((data) => {
         this.auth.setToken('access_token', data.access_token);
         this.getUserData();
+        this.getStockData();
         this.router.navigate(['/']);
       });
   }
@@ -40,6 +42,7 @@ export class AccountService {
       .subscribe((data) => {
         this.auth.setToken('access_token', data.access_token);
         this.getUserData();
+        this.getStockData();
         this.router.navigate(['/']);
       });
   }
@@ -60,10 +63,27 @@ export class AccountService {
       .get(envConfig.baseUrl + 'users/me', { headers: headers })
       .subscribe({
         next: (data: any) => {
-          console.log('API CALL');
           this.setUserId(data.firstName);
           this.setCash(data.cash);
           this.setIsAuthorized(true);
+        },
+        error: (error) => {
+          console.warn('Your user token has expired, please login again.');
+          this.auth.flushToken();
+        },
+      });
+  }
+
+  getStockData() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.auth.getToken()}`,
+    });
+    this.http
+      .get(envConfig.baseUrl + 'stocks', { headers: headers })
+      .subscribe({
+        next: (data: any) => {
+          this.setStocks(data);
         },
         error: (error) => {
           console.warn('Your user token has expired, please login again.');
@@ -87,6 +107,11 @@ export class AccountService {
     this._cash = cash;
   }
 
+  setStocks(stocks: Record<string, string | number>[]) {
+    this.stocks.next(stocks);
+    this._stocks = stocks;
+  }
+
   getIsAuthorized() {
     return this._isAuthorized;
   }
@@ -97,5 +122,9 @@ export class AccountService {
 
   getCash() {
     return this._cash;
+  }
+
+  getStocks() {
+    return this._stocks;
   }
 }

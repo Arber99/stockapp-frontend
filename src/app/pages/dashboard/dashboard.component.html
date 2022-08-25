@@ -6,19 +6,51 @@
     <h1 class="font-bold text-4xl pb-2 xl:text-7xl text-black">
       Your portfolio
     </h1>
-    <div class="pt-8">
-        <span class="text-zinc-900 font-bold text-3xl">{{cash}}</span>
-        <span class="pl-2 text-md text-green-500 font-bold">(+10.04%)</span>
+    <div class="mt-8 flex flex-row items-center">
+      <div class="flex flex-row items-end">
+        <span class="text-zinc-900 font-bold text-4xl">{{ networth }}</span>
+        <span class="pl-2 mb-1 text-md text-green-500 font-bold"
+          >(+10.04%)</span
+        >
+      </div>
+      <span
+        class="ml-8 text-white bg-green-500 rounded-full p-1 pl-3 pr-3 font-bold text-lg"
+        >Cash: {{ getCash() }}</span
+      >
     </div>
-    <ul class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12">
-      <li>
-        <comp-card-stock company="Microsoft" symbol="MSFT" [price]="140.85" [amount]="15"></comp-card-stock>
-      </li>
-      <li>
-        <comp-card-stock company="Apple" symbol="AAPL" [price]="79.46" [amount]="53"></comp-card-stock>
-      </li>
-      <li>
-        <comp-card-stock company="Tesla" symbol="TSLA" [price]="458.56" [amount]="7"></comp-card-stock>
+    <div class="mt-8 block">
+      <a [routerLink]="'/market'">
+        <button class="font-bold pl-3 pr-3 pt-1 pb-1 bg-green-400 text-white">
+          Buy Stocks
+        </button>
+      </a>
+      <button
+        [routerLink]="'/markets'"
+        class="ml-8 font-bold pl-3 pr-3 pt-1 pb-1 bg-red-400 text-white"
+      >
+        Sell Stocks
+      </button>
+    </div>
+    <ul
+      class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12"
+      *ngIf="stocks.length > 0; else nostocks"
+    >
+      <li *ngFor="let stock of stocks">
+        <comp-card-stock
+          [company]="getCompany(stock['ticker'])"
+          [symbol]="getSymbol(stock['ticker'])"
+          [price]="getPrice(stock['ticker'])"
+          [amount]="getAmount(stock['amount'])"
+        ></comp-card-stock>
       </li>
     </ul>
   </div>
+</div>
+
+<ng-template #nostocks>
+  <ul class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12">
+    <li>
+      <span>No stocks</span>
+    </li>
+  </ul>
+</ng-template>
