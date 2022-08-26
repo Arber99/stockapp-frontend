@@ -1,11 +1,11 @@
 <div class="cshadow pt-6 pb-4 pl-6 pr-6 rounded-xl">
   <div class="flex flex-row justify-between items-end">
     <h3 class="font-bold text-2xl">{{ company }}</h3>
-    <span class="font-semibold text-zinc-700">{{ _price }}</span>
+    <span class="font-semibold text-zinc-700">{{ price | Dollar }}</span>
   </div>
   <h4 class="text-zinc-700">{{ symbol }}</h4>
   <div class="flex flex-row pt-5 justify-between items-end">
-    <span class="font-semibold text-lg text-zinc-700">{{ total }}</span>
+    <span class="font-semibold text-lg text-zinc-700">{{ total | Dollar }}</span>
     <span class="text-zinc-400 font-bold">{{ amount }}x</span>
   </div>
 </div>

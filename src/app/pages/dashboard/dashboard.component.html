@@ -8,14 +8,14 @@
     </h1>
     <div class="mt-8 flex flex-row items-center">
       <div class="flex flex-row items-end">
-        <span class="text-zinc-900 font-bold text-4xl">{{ networth }}</span>
+        <span class="text-zinc-900 font-bold text-4xl">{{ networth | Dollar }}</span>
         <span class="pl-2 mb-1 text-md text-green-500 font-bold"
           >(+10.04%)</span
         >
       </div>
       <span
         class="ml-8 text-white bg-green-500 rounded-full p-1 pl-3 pr-3 font-bold text-lg"
-        >Cash: {{ getCash() }}</span
+        >Cash: {{ cash | Dollar }}</span
       >
     </div>
     <div class="mt-8 block">
@@ -37,10 +37,10 @@
     >
       <li *ngFor="let stock of stocks">
         <comp-card-stock
-          [company]="getCompany(stock['ticker'])"
-          [symbol]="getSymbol(stock['ticker'])"
-          [price]="getPrice(stock['ticker'])"
-          [amount]="getAmount(stock['amount'])"
+          [company]="stock['ticker']"
+          [symbol]="stock['ticker']"
+          [price]="10"
+          [amount]="stock['amount']"
         ></comp-card-stock>
       </li>
     </ul>

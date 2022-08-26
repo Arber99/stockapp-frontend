@@ -14,20 +14,11 @@ export class CardStockComponent implements OnInit {
   symbol: string = '';
   @Input()
   price: number = 0;
-  _price: string = '';
   @Input()
   amount: number = 0;
-  total: string = '';
+  total: number = 0;
 
   ngOnInit(): void {
-    this._price = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(this.price);
-
-    this.total = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(this.amount * this.price);
+    this.total = this.amount * this.price;
   }
 }

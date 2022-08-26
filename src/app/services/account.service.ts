@@ -23,7 +23,7 @@ export class AccountService {
   _userData = '';
   _isAuthorized = false;
   _cash = 0;
-  _stocks: Record<string, string | number>[] = [];
+  _stocks: Record<string, string>[] = [];
 
   async signUp(dto: any) {
     await this.http
@@ -107,7 +107,7 @@ export class AccountService {
     this._cash = cash;
   }
 
-  setStocks(stocks: Record<string, string | number>[]) {
+  setStocks(stocks: Record<string, string>[]) {
     this.stocks.next(stocks);
     this._stocks = stocks;
   }

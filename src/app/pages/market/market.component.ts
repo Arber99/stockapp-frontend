@@ -17,17 +17,24 @@ export type Market = {
   styleUrls: ['./market.component.scss'],
 })
 export class MarketComponent implements OnInit, OnDestroy {
-  constructor(private http: HttpClient, private auth: AuthService, private marketService: MarketService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private marketService: MarketService
+  ) {}
 
-  market: Market = []
+  market: Market = [];
   sub: Subscription = new Subscription();
-  marketSub: Subscription = new Subscription();
 
   ngOnInit(): void {
     this.sub = this.marketService.getMarketData();
-    this.marketSub = this.marketService.market.subscribe((data) => {
+    this.marketService.market.subscribe((data) => {
       this.market = data;
-    })
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   buyStock(ticker: string) {
@@ -44,10 +51,5 @@ export class MarketComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         console.log(data);
       });
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    this.marketSub.unsubscribe();
   }
 }

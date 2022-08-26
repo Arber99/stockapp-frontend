@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { MarketService } from 'src/app/services/market.service';
 import { Market } from '../market/market.component';
+import { DollarPipe } from 'src/app/pipes/dollar.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,8 +29,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   market: Market = [];
   sub: Subscription = new Subscription();
   cash: number = 0;
-  stocks: Record<string, string | number>[] = [];
-  networth: string = '';
+  stocks: any = [];
+  networth: number = 0;
 
   ngOnInit(): void {
     this.cash = this.account.getCash();
@@ -46,42 +47,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  getCompany(company: number | string) {
-    return company as string;
-  }
-
-  getSymbol(symbol: number | string) {
-    return symbol as string;
-  }
-
-  getAmount(amount: number | string) {
-    return amount as number;
-  }
-
-  getPrice(ticker: number | string) {
-    const mak: any = this.market.find((element) => element.ticker === ticker.toString())
-    if(mak.bp === undefined) {
-      return null;
-    }
-    return mak.bp;
-  }
-
-  getCash() {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(this.cash);
+  getPrice(ticker: string) {
+    const price: any = this.market.find((element) => element.ticker === ticker.toString())
+    return price.bp;
   }
 
   calculateNetworth() {
     let total: number = this.cash;
-    this.stocks.forEach((record) => {
-      total += (record['amount'] as number) * 100;
-    });
-
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(total);
+    // this.stocks.forEach((record) => {
+    // });
+    return total;
   }
 }

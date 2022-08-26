@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CardStockComponent } from './components/card-stock/card-stock.component';
 import { MarketComponent } from './pages/market/market.component';
+import { DollarPipe } from './pipes/dollar.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MarketComponent } from './pages/market/market.component';
     LogInComponent,
     DashboardComponent,
     CardStockComponent,
-    MarketComponent
+    MarketComponent,
+    DollarPipe
   ],
   imports: [
     BrowserModule,
