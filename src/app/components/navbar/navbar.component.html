@@ -54,6 +54,13 @@
       >
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
+      <a
+        [routerLink]="'/market'"
+        class="text-white dark:text-black font-bold"
+        >Market</a
+      >
+    </li>
+    <li class="text-white font-bold" *ngIf="isAuthorized">
       <a [routerLink]="'/'" (click)="logOut()" class="bg-red-400 p-2 pl-3 pr-3"
         >Log out</a
       >

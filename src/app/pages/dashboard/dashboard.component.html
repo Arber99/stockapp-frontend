@@ -6,33 +6,24 @@
     <h1 class="font-bold text-4xl pb-2 xl:text-7xl text-black">
       Your portfolio
     </h1>
-    <div class="mt-8 flex flex-row items-center">
+    <div class="mt-4 lg:mt-8 flex flex-row items-center">
       <div class="flex flex-row items-end">
-        <span class="text-zinc-900 font-bold text-4xl">{{ networth | Dollar }}</span>
+        <span class="text-zinc-900 font-bold text-3xl lg:text-4xl">{{
+          networth | Dollar
+        }}</span>
         <span class="pl-2 mb-1 text-md text-green-500 font-bold"
           >(+10.04%)</span
         >
       </div>
+    </div>
+    <div>
       <span
-        class="ml-8 text-white bg-green-500 rounded-full p-1 pl-3 pr-3 font-bold text-lg"
+        class="text-white bg-indigo-400 p-1 pl-3 pr-3 font-bold text-lg"
         >Cash: {{ cash | Dollar }}</span
       >
     </div>
-    <div class="mt-8 block">
-      <a [routerLink]="'/market'">
-        <button class="font-bold pl-3 pr-3 pt-1 pb-1 bg-green-400 text-white">
-          Buy Stocks
-        </button>
-      </a>
-      <button
-        [routerLink]="'/markets'"
-        class="ml-8 font-bold pl-3 pr-3 pt-1 pb-1 bg-red-400 text-white"
-      >
-        Sell Stocks
-      </button>
-    </div>
     <ul
-      class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12"
+      class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-0 lg:gap-12"
       *ngIf="stocks.length > 0; else nostocks"
     >
       <li *ngFor="let stock of stocks">

@@ -43,7 +43,7 @@ export class AccountService {
         this.auth.setToken('access_token', data.access_token);
         this.getUserData();
         this.getStockData();
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       });
   }
 
