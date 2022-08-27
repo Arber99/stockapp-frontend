@@ -4,6 +4,7 @@ import { envConfig } from 'envConfig';
 import { interval, startWith, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MarketService } from 'src/app/services/market.service';
+import { StockService } from 'src/app/services/stock.service';
 
 export type Market = {
   ticker: string;
@@ -18,38 +19,27 @@ export type Market = {
 })
 export class MarketComponent implements OnInit, OnDestroy {
   constructor(
-    private http: HttpClient,
-    private auth: AuthService,
+    private stockService: StockService,
     private marketService: MarketService
   ) {}
 
   market: Market = [];
-  sub: Subscription = new Subscription();
+  marketData: Subscription = new Subscription();
+  marketList: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.sub = this.marketService.getMarketData();
-    this.marketService.market.subscribe((data) => {
+    this.marketData = this.marketService.getMarketData();
+    this.marketList = this.marketService.market.subscribe((data) => {
       this.market = data;
     });
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.marketData.unsubscribe();
+    this.marketList.unsubscribe();
   }
 
   buyStock(ticker: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.auth.getToken()}`,
-    });
-    this.http
-      .post(
-        envConfig.baseUrl + 'stocks',
-        { ticker: ticker, amount: 1 },
-        { headers: headers }
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+    this.stockService.buyStock(ticker);
   }
 }

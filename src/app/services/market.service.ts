@@ -28,7 +28,6 @@ export class MarketService {
               this.market.next(data);
             },
           });
-        console.log('Hey');
       });
   }
 }

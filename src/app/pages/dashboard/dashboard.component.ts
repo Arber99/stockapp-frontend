@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { elementAt, Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { MarketService } from 'src/app/services/market.service';
 import { Market } from '../market/market.component';
@@ -17,45 +17,53 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {
     this.account.cash.subscribe((data: number) => {
       this.cash = data;
-      this.networth = this.calculateNetworth();
     });
 
     this.account.stocks.subscribe((data: any) => {
       this.stocks = data;
-      this.networth = this.calculateNetworth();
     });
   }
 
   market: Market = [];
-  sub: Subscription = new Subscription();
-  cash: number = 0;
+  marketData: Subscription = new Subscription();
+  marketList: Subscription = new Subscription();
+
   stocks: any = [];
+  cash: number = 0;
   networth: number = 0;
 
   ngOnInit(): void {
     this.cash = this.account.getCash();
-    this.stocks = this.account.getStocks();
-    this.networth = this.calculateNetworth();
 
-    this.sub = this.marketService.getMarketData();
-    this.marketService.market.subscribe((data) => {
+    this.marketData = this.marketService.getMarketData();
+    this.marketList = this.marketService.market.subscribe((data) => {
       this.market = data;
+
+      this.calculatePortfolio()
     });
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.marketData.unsubscribe();
+    this.marketList.unsubscribe();
   }
 
-  getPrice(ticker: string) {
-    const price: any = this.market.find((element) => element.ticker === ticker.toString())
-    return price.bp;
-  }
-
-  calculateNetworth() {
-    let total: number = this.cash;
-    // this.stocks.forEach((record) => {
-    // });
-    return total;
+  calculatePortfolio() {
+    const stocks = this.account.getStocks();
+    const portfolio: any[] = [];
+    let portfolioValue: number = 0;
+    stocks.forEach((stock: any) => {
+      stock.price = this.market.find((element) => element.ticker === stock.ticker.toString())!.bp
+      portfolio.push({
+        ticker: stock.ticker,
+        amount: stock.amount,
+        id: stock.id,
+        price: stock.price,
+        total: stock.price * stock.amount
+      })
+      portfolioValue += stock.price * stock.amount;
+    });
+    this.stocks = portfolio
+    this.networth = portfolioValue + this.cash;
   }
 }

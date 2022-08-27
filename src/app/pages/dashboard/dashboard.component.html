@@ -38,9 +38,10 @@
       <li *ngFor="let stock of stocks">
         <comp-card-stock
           [company]="stock['ticker']"
-          [symbol]="stock['ticker']"
-          [price]="10"
+          [ticker]="stock['ticker']"
+          [price]="stock['price']"
           [amount]="stock['amount']"
+          [total]="stock['total']"
         ></comp-card-stock>
       </li>
     </ul>
