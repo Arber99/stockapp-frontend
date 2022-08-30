@@ -33,11 +33,14 @@
           [price]="stock['price']"
           [amount]="stock['amount']"
           [total]="stock['total']"
+          (click)="setTrade(stock)"
         ></comp-card-stock>
       </li>
     </ul>
   </div>
 </div>
+
+<comp-stock-popup *ngIf="isTrade" (trade)="disableTrade()" [stock]="trade"></comp-stock-popup>
 
 <ng-template #nostocks>
   <ul class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12">

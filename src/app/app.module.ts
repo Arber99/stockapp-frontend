@@ -13,11 +13,12 @@ import { CourseComponent } from './components/course/course.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CardStockComponent } from './components/card-stock/card-stock.component';
 import { MarketComponent } from './pages/market/market.component';
 import { DollarPipe } from './pipes/dollar.pipe';
+import { StockPopupComponent } from './components/stock-popup/stock-popup.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,15 @@ import { DollarPipe } from './pipes/dollar.pipe';
     DashboardComponent,
     CardStockComponent,
     MarketComponent,
-    DollarPipe
+    DollarPipe,
+    StockPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

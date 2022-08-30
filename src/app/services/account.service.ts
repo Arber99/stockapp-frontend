@@ -85,7 +85,7 @@ export class AccountService {
         next: (data: any) => {
           this.setStocks(data);
         },
-        error: (error) => {
+        error: () => {
           console.warn('Your user token has expired, please login again.');
           this.auth.flushToken();
         },

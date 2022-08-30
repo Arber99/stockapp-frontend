@@ -27,6 +27,11 @@ export class MarketService {
             next: (data: any) => {
               this.market.next(data);
             },
+            error: (error) => {
+              console.warn('Your user token has expired, please login again.');
+              this.market.error(error)
+              this.auth.flushToken();
+            }
           });
       });
   }

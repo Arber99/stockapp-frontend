@@ -29,8 +29,13 @@ export class MarketComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.marketData = this.marketService.getMarketData();
-    this.marketList = this.marketService.market.subscribe((data) => {
-      this.market = data;
+    this.marketList = this.marketService.market.subscribe({
+      next: (data: any) => {
+        this.market = data;
+      },
+      error: (error) => {
+        this.marketData.unsubscribe();
+      },
     });
   }
 
@@ -40,6 +45,6 @@ export class MarketComponent implements OnInit, OnDestroy {
   }
 
   buyStock(ticker: string) {
-    this.stockService.buyStock(ticker);
+    this.stockService.buyStock(ticker, 1);
   }
 }

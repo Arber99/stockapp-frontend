@@ -9,15 +9,31 @@ import { AuthService } from './auth.service';
 export class StockService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  buyStock(ticker: string) {
+  buyStock(ticker: string, amount: number) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
       .post(
-        envConfig.baseUrl + 'stocks',
-        { ticker: ticker, amount: 1 },
+        envConfig.baseUrl + 'stocks/buy',
+        { ticker: ticker, amount: amount },
+        { headers: headers }
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
+
+  sellStock(ticker: string, amount: number) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.auth.getToken()}`,
+    });
+    this.http
+      .post(
+        envConfig.baseUrl + 'stocks/sell',
+        { ticker: ticker, amount: amount },
         { headers: headers }
       )
       .subscribe((data) => {
