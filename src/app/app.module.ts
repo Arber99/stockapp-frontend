@@ -24,6 +24,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ExploreComponent } from './components/explore/explore.component';
+import { CardMarketComponent } from './components/card-market/card-market.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ExploreComponent } from './components/explore/explore.component';
     HistoryComponent,
     FooterComponent,
     LearnComponent,
-    ExploreComponent
+    ExploreComponent,
+    CardMarketComponent
   ],
   imports: [
     BrowserModule,

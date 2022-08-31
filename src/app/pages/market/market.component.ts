@@ -49,8 +49,4 @@ export class MarketComponent implements OnInit, OnDestroy {
     this.marketData.unsubscribe();
     this.marketList.unsubscribe();
   }
-
-  buyStock(ticker: string) {
-    this.stockService.buyStock(ticker, 1);
-  }
 }
