@@ -1,4 +1,4 @@
-<div class="mt-8 cshadow pt-6 pb-2 h-min">
+<div class="mt-8 cshadow pt-6 h-min">
     <h3 class="text-xl font-bold p-6">History</h3>
     <ul class="flex flex-col">
       <li *ngFor="let entry of history.slice().reverse()" class="grid grid-cols-10 gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300">
@@ -20,4 +20,7 @@
         </div>
       </li>
     </ul>
+    <div class="mt-4 pb-4 text-center">
+        <a [routerLink]="'history'" class="text-zinc-400 font-bold text-sm text-center">View full history</a>
+    </div>
   </div>

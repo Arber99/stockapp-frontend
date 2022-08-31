@@ -22,6 +22,8 @@ import { StockPopupComponent } from './components/stock-popup/stock-popup.compon
 import { DatePipe } from './pipes/date.pipe';
 import { HistoryComponent } from './components/history/history.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LearnComponent } from './components/learn/learn.component';
+import { ExploreComponent } from './components/explore/explore.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { FooterComponent } from './components/footer/footer.component';
     StockPopupComponent,
     DatePipe,
     HistoryComponent,
-    FooterComponent
+    FooterComponent,
+    LearnComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,

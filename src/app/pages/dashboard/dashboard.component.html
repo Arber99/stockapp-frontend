@@ -39,7 +39,11 @@
           ></comp-card-stock>
         </li>
       </ul>
-      <comp-history [history]="history" class="col-span-12 lg:col-span-4"></comp-history>
+      <div class="col-span-12 lg:col-span-4">
+        <comp-history [history]="history"></comp-history>
+        <comp-learn></comp-learn>
+        <comp-explore></comp-explore>
+      </div>
     </div>
   </div>
 </div>
