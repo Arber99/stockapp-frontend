@@ -5,6 +5,7 @@ import { History, HistoryService } from 'src/app/services/history.service';
 import { MarketService } from 'src/app/services/market.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Market } from '../market/market.component';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export type Stock = {
   ticker: string;
@@ -27,6 +28,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private tokenService: TokenService,
     private historyService: HistoryService
   ) {}
+
+  faPlus = faPlus;
 
   market: Market = [];
   status: boolean = false;
@@ -75,10 +78,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.historyData = this.historyService.history.subscribe((data: History[]) => {
-      this.history = data;
-      console.log(this.history)
-    })
+    this.historyData = this.historyService.history.subscribe(
+      (data: History[]) => {
+        this.history = data;
+        console.log(this.history);
+      }
+    );
   }
 
   ngOnDestroy(): void {
