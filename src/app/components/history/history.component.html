@@ -1,0 +1,23 @@
+<div class="mt-8 cshadow pt-6 pb-2 h-min">
+    <h3 class="text-xl font-bold p-6">History</h3>
+    <ul class="flex flex-col">
+      <li *ngFor="let entry of history.slice().reverse()" class="grid grid-cols-10 gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300">
+        <div class="flex flex-col col-span-2">
+          <div class="w-min text-center">
+            <fa-icon
+              [icon]="entry.type === 'Buy' ? faArrowRight : faArrowLeft"
+              aria-hidden="true"
+            ></fa-icon>
+            <span class="text-xs">{{ entry.createdAt | Date }}</span>
+          </div>
+        </div>
+        <div class="flex flex-col items-start col-span-5">
+          <span class="font-bold text-sm">{{ entry.ticker }}</span>
+          <span class="text-xs">{{ entry.type === 'Buy' ? 'Bought' :'Sold'}} {{ entry.amount }}x {{ entry.ticker }} at {{ entry.price | Dollar }}</span>
+        </div>
+        <div class="col-span-3">
+          <span class="font-bold text-xs whitespace-nowrap text-right">{{ entry.type === 'Buy' ? '-' :'+'}} {{ entry.amount * entry.price | Dollar }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>

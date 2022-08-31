@@ -1,9 +1,11 @@
 <comp-navbar class="dark"></comp-navbar>
 <div
-  class="flex flex-col pl-12 pr-12 xl:pr-48 xl:pl-48 min-h-[calc(max(500px,_100vh))]"
+  class="flex flex-col pl-12 pr-12 min-h-[calc(max(500px,_100vh))] items-center"
 >
-  <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-48 pb-8">
-    <h1 class="font-bold text-4xl pb-2 xl:text-7xl text-black">
+  <div
+    class="flex flex-col gap-4 pb-8 mb-12 mt-32 pl-8 pr-8 xl:pt-0 xl:mt-48 w-[calc(min(1200px,_100vw))]"
+  >
+    <h1 class="font-bold text-4xl pb-2 xl:text-5xl text-black">
       Your portfolio
     </h1>
     <div class="mt-4 lg:mt-8 flex flex-row items-center">
@@ -17,33 +19,39 @@
       </div>
     </div>
     <div>
-      <span
-        class="text-white bg-indigo-400 p-1 pl-3 pr-3 font-bold text-lg"
+      <span class="text-white bg-indigo-400 p-1 pl-3 pr-3 font-bold text-lg"
         >Cash: {{ cash | Dollar }}</span
       >
     </div>
-    <ul
-      class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-0 lg:gap-12"
-      *ngIf="stocks.length > 0; else nostocks"
-    >
-      <li *ngFor="let stock of stocks">
-        <comp-card-stock
-          [company]="stock['ticker']"
-          [ticker]="stock['ticker']"
-          [price]="stock['price']"
-          [amount]="stock['amount']"
-          [total]="stock['total']"
-          (click)="setTrade(stock)"
-        ></comp-card-stock>
-      </li>
-    </ul>
+    <div class="grid grid-cols-12 lg:gap-12">
+      <ul
+        class="mt-8 cshadow col-span-12 lg:col-span-8 h-min"
+        *ngIf="stocks.length > 0; else nostocks"
+      >
+        <li *ngFor="let stock of stocks">
+          <comp-card-stock
+            [company]="stock['ticker']"
+            [ticker]="stock['ticker']"
+            [price]="stock['bp']"
+            [amount]="stock['amount']"
+            [total]="stock['total']"
+            (click)="setTrade(stock)"
+          ></comp-card-stock>
+        </li>
+      </ul>
+      <comp-history [history]="history" class="col-span-12 lg:col-span-4"></comp-history>
+    </div>
   </div>
 </div>
 
-<comp-stock-popup *ngIf="isTrade" (trade)="disableTrade()" [stock]="trade"></comp-stock-popup>
+<comp-stock-popup
+  *ngIf="isTrade"
+  (trade)="disableTrade()"
+  [stock]="trade"
+></comp-stock-popup>
 
 <ng-template #nostocks>
-  <ul class="mt-8 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12">
+  <ul class="mt-8 cshadow col-span-12 lg:col-span-8">
     <li>
       <span>No stocks</span>
     </li>

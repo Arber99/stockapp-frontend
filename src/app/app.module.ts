@@ -19,6 +19,9 @@ import { CardStockComponent } from './components/card-stock/card-stock.component
 import { MarketComponent } from './pages/market/market.component';
 import { DollarPipe } from './pipes/dollar.pipe';
 import { StockPopupComponent } from './components/stock-popup/stock-popup.component';
+import { DatePipe } from './pipes/date.pipe';
+import { HistoryComponent } from './components/history/history.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { StockPopupComponent } from './components/stock-popup/stock-popup.compon
     CardStockComponent,
     MarketComponent,
     DollarPipe,
-    StockPopupComponent
+    StockPopupComponent,
+    DatePipe,
+    HistoryComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

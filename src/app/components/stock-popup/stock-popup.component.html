@@ -1,4 +1,4 @@
-<div class="hey fixed top-0 left-0 z-20" (mousedown)="closeTrade()">
+<div class="bg fixed top-0 left-0 z-20" (mousedown)="closeTrade()">
   <div
     class="fixed top-1/2 left-1/2 p-8 bg-white w-max rounded -translate-x-1/2 -translate-y-1/2 z-30"
     (mousedown)="$event.stopPropagation()"
@@ -31,12 +31,16 @@
       <div class="border border-[rgb(38 49 60 / 8%)] p-8 rounded-md">
         <div class="flex flex-row">
           <button
-            class="font-bold text-sm pl-3 w-20 pr-3 pt-1 pb-1 text-zinc-500 border-b-4 border-zinc-300"
+            class="font-bold text-sm pl-3 w-20 pr-3 pt-1 pb-1 border-b-4"
+            [ngClass]="mode == 'sell' ? 'border-black' : 'text-zinc-500 border-zinc-300'"
+            (click)="setMode('sell')"
           >
             Sell
           </button>
           <button
-            class="font-bold text-sm ml-8 pl-3 w-20 pr-3 pt-1 pb-1 border-b-4 border-black"
+            class="font-bold text-sm ml-8 pl-3 w-20 pr-3 pt-1 pb-1 border-b-4"
+            [ngClass]="mode == 'buy' ? 'border-black' : 'text-zinc-500 border-zinc-300'"
+            (click)="setMode('buy')"
           >
             Buy
           </button>
@@ -54,19 +58,36 @@
           </div>
           <div class="flex flex-row w-full justify-between items-center">
             <span class="text-sm w-zinc-600">{{ stock.ticker }}</span>
-            <span class="text-sm w-zinc-600 font-bold">{{
-              stock.price | Dollar
+            <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'sell'">{{
+              stock.bp | Dollar
+            }}</span>
+            <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'buy'">{{
+              stock.ap | Dollar
             }}</span>
           </div>
           <div class="flex flex-row w-full justify-between items-center">
             <span class="text-sm w-zinc-600">Total</span>
             <span class="text-sm w-zinc-600 font-bold">{{
-              stock.price * amount | Dollar
+              stock.bp * amount | Dollar
             }}</span>
           </div>
-          <button class="mt-4 bg-green-400 text-sm text-white font-bold p-2" (click)="buyStock(stock.ticker, amount)">
-            Buy
-          </button>
+          <div *ngIf="status" class="flex flex-col">
+            <button *ngIf="mode === 'buy'" class="mt-4 bg-green-400 text-sm text-white font-bold p-2" (click)="buyStock(stock.ticker, amount)">
+              Buy
+            </button>
+            <button *ngIf="mode === 'sell'" class="mt-4 bg-red-400 text-sm text-white font-bold p-2" (click)="sellStock(stock.ticker, amount)">
+              Sell
+            </button>
+          </div>
+          <div disabled *ngIf="!status" class="flex flex-col">
+            <button *ngIf="mode === 'buy'" class="mt-4 bg-green-200 text-sm text-white font-bold p-2 cursor-not-allowed">
+              Buy
+            </button>
+            <button disabled *ngIf="mode === 'sell'" class="mt-4 bg-red-200 text-sm text-white font-bold p-2 cursor-not-allowed">
+              Sell
+            </button>
+            <span class="text-center text-red-600 text-xs mt-1">The market is closed</span>
+          </div>
         </div>
       </div>
     </div>

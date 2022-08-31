@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { MarketService } from './market.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class AccountService {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private marketService: MarketService
   ) {}
 
   userData = new Subject<any>();
@@ -29,10 +31,7 @@ export class AccountService {
     await this.http
       .post<any>(envConfig.baseUrl + 'auth/signup', dto)
       .subscribe((data) => {
-        this.auth.setToken('access_token', data.access_token);
-        this.getUserData();
-        this.getStockData();
-        this.router.navigate(['/']);
+        this.loadData(data.access_token)
       });
   }
 
@@ -40,11 +39,16 @@ export class AccountService {
     await this.http
       .post<any>(envConfig.baseUrl + 'auth/signin', dto)
       .subscribe((data) => {
-        this.auth.setToken('access_token', data.access_token);
-        this.getUserData();
-        this.getStockData();
-        this.router.navigate(['/dashboard']);
+        this.auth.flushToken();
+        this.loadData(data.access_token)
       });
+  }
+
+  async loadData(token: string) {
+    this.auth.setToken('access_token', token);
+    this.getUserData();
+    this.getStockData();
+    this.router.navigate(['/dashboard']);
   }
 
   logout() {
