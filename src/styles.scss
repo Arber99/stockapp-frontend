@@ -3,38 +3,44 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'montserrat';
-  src: url('./fonts/Montserrat-Thin.ttf');
+  font-family: "montserrat";
+  src: url("./fonts/Montserrat-Thin.ttf");
   font-weight: 100;
   font-display: auto;
 }
 @font-face {
-  font-family: 'montserrat';
-  src: url('./fonts/Montserrat-Regular.ttf');
+  font-family: "montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf");
   font-weight: 400;
   font-display: auto;
 }
 
 @font-face {
-  font-family: 'montserrat';
-  src: url('./fonts/Montserrat-SemiBold.ttf');
+  font-family: "montserrat";
+  src: url("./fonts/Montserrat-SemiBold.ttf");
   font-weight: 600;
   font-display: auto;
 }
 
 @font-face {
-    font-family: 'montserrat';
-    src: url('./fonts/Montserrat-Bold.ttf');
-    font-weight: 700;
-    font-display: auto;
-  }
+  font-family: "montserrat";
+  src: url("./fonts/Montserrat-Bold.ttf");
+  font-weight: 700;
+  font-display: auto;
+}
 
 body {
-    font-family: montserrat;
-  }
+  font-family: montserrat;
+}
 
 @layer components {
   .cshadow {
-    box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 32px rgba(166,173,201,.2);
-}
+    box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+      0 15px 32px rgba(166, 173, 201, 0.2);
+  }
+
+  .cshadow-2 {
+    box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+      0 10px 10px rgba(166, 173, 201, 0.2);
+  }
 }

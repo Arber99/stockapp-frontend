@@ -24,39 +24,42 @@
       >
     </div>
     <div class="grid grid-cols-12 lg:gap-12">
-      <ul
-        class="mt-8 cshadow col-span-12 lg:col-span-8 h-min"
-        *ngIf="stocks.length > 0; else nostocks"
-      >
-        <li *ngFor="let stock of stocks">
-          <comp-card-stock
-            [company]="stock['ticker']"
-            [ticker]="stock['ticker']"
-            [price]="stock['bp']"
-            [amount]="stock['amount']"
-            [total]="stock['total']"
-            (click)="setTrade(stock)"
-          ></comp-card-stock>
-        </li>
-        <li>
-          <div
-            class="p-5 lg:p-6 h-28 flex flex-row justify-between items-center bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer relative group"
-          >
-            <h3
-              class="text-lg md:text-lg text-zinc-400 hidden md:block"
-            >
-              Buy Stocks
-            </h3>
+      <div class="col-span-12 lg:col-span-8">
+        <div class="mt-8 cshadow">
+          <comp-chart></comp-chart>
+        </div>
+        <ul
+          class="mt-8 cshadow h-min"
+          *ngIf="stocks.length > 0; else nostocks"
+        >
+          <li *ngFor="let stock of stocks">
+            <comp-card-stock
+              [company]="stock['ticker']"
+              [ticker]="stock['ticker']"
+              [price]="stock['bp']"
+              [amount]="stock['amount']"
+              [total]="stock['total']"
+              (click)="setTrade(stock)"
+            ></comp-card-stock>
+          </li>
+          <li>
             <div
-              class="flex w-16 h-16 bg-blue-500 group-hover:bg-blue-600 transition-colors duration-300 rounded-full items-center justify-center absolute left-0 right-0 ml-auto mr-auto"
+              class="p-5 lg:p-6 h-28 flex flex-row justify-between items-center bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer relative group"
             >
-              <fa-icon [icon]="faPlus" class="text-white text-3xl"></fa-icon>
+              <h3 class="text-lg md:text-lg text-zinc-400 hidden md:block">
+                Buy Stocks
+              </h3>
+              <div
+                class="flex w-16 h-16 bg-blue-500 group-hover:bg-blue-600 transition-colors duration-300 rounded-full items-center justify-center absolute left-0 right-0 ml-auto mr-auto"
+              >
+                <fa-icon [icon]="faPlus" class="text-white text-3xl"></fa-icon>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
       <div class="col-span-12 lg:col-span-4">
-        <comp-history [history]="history"></comp-history>
+        <comp-history></comp-history>
         <comp-learn></comp-learn>
         <comp-explore></comp-explore>
       </div>

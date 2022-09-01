@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
-import { History, HistoryService } from 'src/app/services/history.service';
+import { History } from 'src/app/services/history.service';
 import { MarketService } from 'src/app/services/market.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Market } from '../market/market.component';
@@ -9,11 +9,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export type Stock = {
   ticker: string;
-  amount: number;
-  id: number;
+  amount?: number;
+  id?: number;
   bp: number;
   ap: number;
-  total: number;
+  total?: number;
 };
 
 @Component({
@@ -25,8 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private account: AccountService,
     private marketService: MarketService,
-    private tokenService: TokenService,
-    private historyService: HistoryService
+    private tokenService: TokenService
   ) {}
 
   faPlus = faPlus;
@@ -37,7 +36,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   marketList: Subscription = new Subscription();
   accountCash: Subscription = new Subscription();
   accountStocks: Subscription = new Subscription();
-  historyData: Subscription = new Subscription();
 
   stocks: any = [];
   cash: number = 0;
@@ -51,11 +49,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ap: 0,
     total: 0,
   };
-  history: History[] = [];
 
   ngOnInit(): void {
     this.tokenService.isExpired();
-    this.historyService.getHistory();
     this.cash = this.account.getCash();
     this.stocks = this.account.getStocks();
 
@@ -77,13 +73,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.marketData.unsubscribe();
       },
     });
-
-    this.historyData = this.historyService.history.subscribe(
-      (data: History[]) => {
-        this.history = data;
-        console.log(this.history);
-      }
-    );
   }
 
   ngOnDestroy(): void {
@@ -91,7 +80,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.marketList.unsubscribe();
     this.accountCash.unsubscribe();
     this.accountStocks.unsubscribe();
-    this.historyData.unsubscribe();
   }
 
   calculatePortfolio() {

@@ -25,6 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { CardMarketComponent } from './components/card-market/card-market.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { StockChartComponent } from './components/stock-chart/stock-chart.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { CardMarketComponent } from './components/card-market/card-market.compon
     FooterComponent,
     LearnComponent,
     ExploreComponent,
-    CardMarketComponent
+    CardMarketComponent,
+    ChartComponent,
+    StockChartComponent
   ],
   imports: [
     BrowserModule,

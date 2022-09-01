@@ -1,0 +1,30 @@
+<h2 class="p-6 text-xl font-bold">Chart</h2>
+<ul class="pl-6 pb-6 flex flex-row gap-8 font-bold text-sm text-zinc-700">
+  <li>1D</li>
+  <li>1W</li>
+  <li>1M</li>
+  <li>1Y</li>
+  <li>5Y</li>
+</ul>
+<svg viewBox="0 0 702 310" class="pl-6 pr-6">
+  <g transform="translate(0,  25)">
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="path"
+      stroke="#93DD93"
+      stroke-width="3px"
+    ></path>
+  </g>
+</svg>
+<div class="pl-16 pt-6 pb-6 pr-6">
+  <ul
+    class="flex-row justify-between text-xs font-semibold text-zinc-500 hidden md:flex"
+  >
+    <li>16:00</li>
+    <li>18:00</li>
+    <li>20:00</li>
+    <li>22:00</li>
+  </ul>
+</div>
