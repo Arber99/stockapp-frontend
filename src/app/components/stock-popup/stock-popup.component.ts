@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Stock } from 'src/app/pages/dashboard/dashboard.component';
 import { MarketService } from 'src/app/services/market.service';
@@ -9,11 +9,22 @@ import { StockService } from 'src/app/services/stock.service';
   templateUrl: './stock-popup.component.html',
   styleUrls: ['./stock-popup.component.scss'],
 })
-export class StockPopupComponent {
+export class StockPopupComponent implements OnInit, OnDestroy {
   constructor(
     private stockService: StockService,
     private marketService: MarketService
-  ) {}
+  ) {
+    this.market = this.marketService.market.subscribe((data) => {
+      this.status = data.marketStatus;
+
+      this.stock.bp = data.marketData.find(
+        (element: any) => element.ticker === this.stock.ticker.toString()
+      )?.bp;
+      this.stock.ap = data.marketData.find(
+        (element: any) => element.ticker === this.stock.ticker.toString()
+      )?.ap;
+    });
+  }
   @Output() trade: EventEmitter<{}> = new EventEmitter();
   @Input() stock: Stock = {
     ticker: '',
@@ -30,19 +41,9 @@ export class StockPopupComponent {
 
   ngOnInit() {
     this.status = this.marketService.getStatus();
-    this.market = this.marketService.market.subscribe((data) => {
-      this.status = data.marketStatus;
-
-      this.stock.bp = data.marketData.find(
-        (element: any) => element.ticker === this.stock.ticker.toString()
-      )?.bp;
-      this.stock.ap = data.marketData.find(
-        (element: any) => element.ticker === this.stock.ticker.toString()
-      )?.ap;
-    });
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.market.unsubscribe();
   }
 

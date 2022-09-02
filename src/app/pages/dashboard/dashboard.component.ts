@@ -6,6 +6,7 @@ import { MarketService } from 'src/app/services/market.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Market } from '../market/market.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 export type Stock = {
   ticker: string;
@@ -25,7 +26,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private account: AccountService,
     private marketService: MarketService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private portfolioService: PortfolioService
   ) {}
 
   faPlus = faPlus;
@@ -104,6 +106,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.stocks = portfolio;
     this.networth = portfolioValue + this.cash;
+
+    this.portfolioService.portfolio.next({
+      stocks: this.stocks,
+      cash: this.cash,
+    })
   }
 
   setTrade(stock: Stock) {

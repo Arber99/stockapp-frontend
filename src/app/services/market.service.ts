@@ -18,7 +18,7 @@ export class MarketService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
-    return interval(5000)
+    return interval(60000)
       .pipe(startWith(0))
       .subscribe(() => {
         this.http

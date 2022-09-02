@@ -22,7 +22,7 @@
             <h5>1Y</h5>
             <h5>5Y</h5>
           </div>
-          <comp-stock-chart></comp-stock-chart>
+          <comp-stock-chart [ticker]="stock.ticker" [lastPrice]="stock.bp"></comp-stock-chart>
         </div>
       </div>
       <div class="border border-[rgb(38 49 60 / 8%)] p-8 rounded-md">
