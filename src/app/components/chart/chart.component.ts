@@ -46,6 +46,7 @@ export class ChartComponent {
   stocks = [];
   cash: number = 0;
   path = '';
+  positive = true;
 
   calculateChart(): void {
 
@@ -64,5 +65,9 @@ export class ChartComponent {
         this.path += `L${index * 27},${((max - element) / diff) * 300 - 20},`;
       }
     });
+
+    this.chart[0] < this.chart[this.chart.length - 1]
+    ? (this.positive = true)
+    : (this.positive = false);
   }
 }

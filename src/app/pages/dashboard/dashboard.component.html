@@ -3,35 +3,34 @@
   class="flex flex-col pl-12 pr-12 min-h-[calc(max(500px,_100vh))] items-center"
 >
   <div
-    class="flex flex-col gap-4 pb-8 mb-12 mt-32 pl-8 pr-8 xl:pt-0 xl:mt-44 w-[calc(min(1200px,_100vw))]"
+    class="mb-12 mt-32 xl:pt-0 xl:mt-44 w-[calc(min(1200px,_100vw))]"
   >
-    <h2 class="font-bold text-4xl pb-2 xl:text-5xl text-black">
-      Your portfolio
-    </h2>
-    <div class="mt-4 lg:mt-8 flex flex-row items-center">
-      <div class="flex flex-row items-end">
-        <span class="text-zinc-900 font-bold text-3xl lg:text-4xl">{{
-          networth | Dollar
-        }}</span>
-        <span class="pl-2 mb-1 text-md text-green-500 font-bold"
-          >(+10.04%)</span
+    <div class="flex flex-col gap-4 bg-white cshadow p-6">
+      <h2 class="font-bold text-4xl pb-2 xl:text-3xl text-black">
+        Your portfolio
+      </h2>
+      <div class="mt-4 lg:mt-8 flex flex-row items-center">
+        <div class="flex flex-row items-end">
+          <span class="text-zinc-900 font-bold text-2xl lg:text-2xl">{{
+            networth | Dollar
+          }}</span>
+          <span class="pl-2 mb-[6px] text-sm text-green-500 font-bold"
+            >(+ 10.04%)</span
+          >
+        </div>
+      </div>
+      <div>
+        <span class="text-white bg-green-400 p-1 pl-3 pr-3 font-bold text-lg"
+          >Cash: {{ cash | Dollar }}</span
         >
       </div>
-    </div>
-    <div>
-      <span class="text-white bg-indigo-400 p-1 pl-3 pr-3 font-bold text-lg"
-        >Cash: {{ cash | Dollar }}</span
-      >
     </div>
     <div class="grid grid-cols-12 lg:gap-12">
       <div class="col-span-12 lg:col-span-8">
         <div class="mt-8 cshadow">
           <comp-chart></comp-chart>
         </div>
-        <ul
-          class="mt-8 cshadow h-min"
-          *ngIf="stocks.length > 0; else nostocks"
-        >
+        <ul class="mt-8 cshadow h-min" *ngIf="stocks.length > 0; else nostocks">
           <li *ngFor="let stock of stocks">
             <comp-card-stock
               [company]="stock['ticker']"
