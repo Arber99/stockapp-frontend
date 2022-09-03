@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { dictionary } from 'src/app/dictionary/dictionary';
 
 type Market = {
   ticker: string,
@@ -19,4 +20,9 @@ export class CardMarketComponent {
     ap: 0,
     bp: 0,
   };
+  company: string = ''
+
+  ngOnInit() {
+    this.company = dictionary[this.market.ticker]
+  }
 }

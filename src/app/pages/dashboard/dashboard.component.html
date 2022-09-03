@@ -33,7 +33,6 @@
         <ul class="mt-8 cshadow h-min" *ngIf="stocks.length > 0; else nostocks">
           <li *ngFor="let stock of stocks">
             <comp-card-stock
-              [company]="stock['ticker']"
               [ticker]="stock['ticker']"
               [price]="stock['bp']"
               [amount]="stock['amount']"

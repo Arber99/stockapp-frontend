@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { dictionary } from 'src/app/dictionary/dictionary';
 
 @Component({
   selector: 'comp-card-stock',
   templateUrl: './card-stock.component.html',
   styleUrls: ['./card-stock.component.scss'],
 })
-export class CardStockComponent {
+export class CardStockComponent implements OnInit {
   constructor() {}
 
-  @Input()
   company: string = '';
   @Input()
   ticker: string = '';
@@ -18,5 +18,9 @@ export class CardStockComponent {
   amount: number = 0;
   @Input()
   total: number = 0;
+
+  ngOnInit()  {
+    this.company = dictionary[this.ticker];
+  }
 
 }
