@@ -10,5 +10,18 @@ export const dictionary: Record<string, string> = {
   WFC: 'Wells Fargo',
   INTC: 'Intel',
   TXN: 'Texas Instruments',
-  TMO: 'Thermo Fisher'
+  TMO: 'Thermo Fisher',
+  ADBE: 'Adobe',
+  BABA: 'Alibaba',
+  TSLA: 'Tesla',
+  GOOG: 'Alphabet',
+  UNH: 'UnitedHealth',
+  JNJ: 'Johnson & Johnson',
+  V: 'Visa',
+  NVDA: 'Nvidia',
+  XOM: 'ExxonMobil',
+  WMT: 'Walmart',
+  PG: 'Procter & Gamble',
+  JPM: 'JPMorgan Chase',
+  MA: 'Mastercard'
 };
