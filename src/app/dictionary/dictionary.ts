@@ -23,5 +23,11 @@ export const dictionary: Record<string, string> = {
   WMT: 'Walmart',
   PG: 'Procter & Gamble',
   JPM: 'JPMorgan Chase',
-  MA: 'Mastercard'
+  MA: 'Mastercard',
+  TTE: 'TotalEnergies',
+  BMY: 'Bristol-Myers Squibb',
+  COP: 'ConocoPhillips',
+  TMUS: 'T-Mobile',
+  COST: 'Costco Wholesale',
+  ABBV: 'AbbVie',
 };
