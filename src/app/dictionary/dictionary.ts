@@ -30,4 +30,11 @@ export const dictionary: Record<string, string> = {
   TMUS: 'T-Mobile',
   COST: 'Costco Wholesale',
   ABBV: 'AbbVie',
+  CMCSA: 'Comcast',
+  SPGI: 'S&P Global',
+  SHEL: 'Shell',
+  DIS: 'Walt Disney',
+  AMT: 'American Tower',
+  TM: 'Toyota Motor',
+  BX: 'Blackstone',
 };
