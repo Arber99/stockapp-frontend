@@ -16,7 +16,8 @@
           <span class="text-xs">{{ entry.type === 'Buy' ? 'Bought' :'Sold'}} {{ entry.amount }}x {{ entry.ticker }} at {{ entry.price | Dollar }}</span>
         </div>
         <div class="col-span-3">
-          <span class="font-bold text-xs whitespace-nowrap text-right">{{ entry.type === 'Buy' ? '-' :'+'}} {{ entry.amount * entry.price | Dollar }}</span>
+          <span class="font-bold whitespace-nowrap text-right"
+          [ngClass]="entry.amount * entry.price < 100000 ? 'text-xs': 'text-[10px]'">{{ entry.type === 'Buy' ? '-' :'+'}} {{ entry.amount * entry.price | Dollar }}</span>
         </div>
       </li>
     </ul>

@@ -1,6 +1,6 @@
 <comp-navbar class="dark"></comp-navbar>
 <div
-  class="flex flex-col max-w-[1200px] pl-8 pr-8 w-full ml-auto mr-auto mb-10 min-h-[calc(max(500px,_100vh))]"
+  class="flex flex-col max-w-[1200px] pl-6 pr-6 w-full ml-auto mr-auto mb-10 min-h-[calc(max(500px,_100vh))]"
 >
   <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-44 pb-8">
     <h2 class="font-bold text-4xl pb-2 xl:text-5xl text-black">
@@ -10,18 +10,34 @@
       <ul class="mt-8 flex flex-col col-span-12 lg:col-span-8 cshadow">
         <li>
           <div
-            class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 grid grid-cols-12 justify-between items-center bg-white"
+            class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white"
           >
-            <div class="col-span-4">
+            <div>
               <h3 class="font-bold">Company</h3>
             </div>
-            <span class="col-span-2 font-semibold text-zinc-700">Bid</span>
-            <span class="col-span-2 ml-4 text-zinc-700 font-bold">Ask</span>
-            <span class="col-span-4 ml-12 text-zinc-700 font-bold">Action</span>
+            <div class="md:flex flex-row hidden">
+              <div class="w-24">
+                <span class="font-semibold text-zinc-700">Bid</span>
+              </div>
+              <div class="w-24">
+                <span class="text-zinc-700 font-bold">Ask</span>
+              </div>
+              <span class="col-span-4 ml-9 mr-3 text-zinc-700 font-bold"
+                >Action</span
+              >
+            </div>
+            <div class="md:hidden block">
+              <span class="col-span-4 text-zinc-700 font-bold"
+                >Price</span
+              >
+            </div>
           </div>
         </li>
         <li *ngFor="let stock of market">
-          <comp-card-market [market]="stock" (click)="setTrade(stock)"></comp-card-market>
+          <comp-card-market
+            [market]="stock"
+            (click)="setTrade(stock)"
+          ></comp-card-market>
         </li>
       </ul>
       <div class="col-span-12 lg:col-span-4">

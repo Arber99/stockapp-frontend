@@ -1,20 +1,20 @@
 <div
-  class="p-5 lg:p-6 flex flex-row justify-between items-end bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer"
+  class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-end bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer"
 >
-  <div class="flex flex-row gap-6 items-center">
+  <div class="col-span-4 flex flex-row gap-6 items-center">
     <div class="w-8">
-      <img src="../../../assets/symbols/{{ticker}}.svg">
+      <img src="../../../assets/symbols/{{ ticker }}.svg">
     </div>
     <div>
-      <h3 class="font-bold text-lg md:text-lg">{{ company }}</h3>
-      <h4 class="text-zinc-700 text-sm lg:text-base">{{ ticker }}</h4>
+      <h3 class="font-bold text-sm">{{ company }}</h3>
+      <h4 class="text-zinc-700 text-sm">{{ ticker }}</h4>
     </div>
   </div>
   <div class="flex flex-col items-end">
     <div class="block">
-      <span class="text-zinc-700">{{ price | Dollar }}</span>
-      <span class="ml-4 text-zinc-700">{{ amount }}x</span>
+      <span class="text-zinc-700 text-sm">{{ price | Dollar }}</span>
+      <span class="ml-4 text-zinc-700 text-sm">{{ amount }}x</span>
     </div>
-    <span class="font-bold text-zinc-700">{{ total | Dollar }}</span>
+    <span class="font-bold text-zinc-700 text-sm">{{ total | Dollar }}</span>
   </div>
 </div>

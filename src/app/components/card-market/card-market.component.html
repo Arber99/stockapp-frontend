@@ -1,18 +1,29 @@
 <div
-  class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 grid grid-cols-12 justify-between items-center bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer"
+  class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer"
 >
-  <div class="col-span-4 flex flex-row gap-6 items-center">
+  <div class="flex flex-row gap-6 items-center">
     <div class="w-8">
-      <img src="../../../assets/symbols/{{market.ticker}}.svg">
+      <img src="../../../assets/symbols/{{ market.ticker }}.svg" />
     </div>
     <div>
       <h3 class="font-bold text-sm">{{ company }}</h3>
       <h4 class="text-zinc-700 text-sm">{{ market.ticker }}</h4>
     </div>
   </div>
-  <span class="col-span-2 text-zinc-700 text-sm">{{ market.bp | Dollar }}</span>
-  <span class="col-span-2 ml-4 text-zinc-700 text-sm">{{ market.ap | Dollar }}</span>
-  <button class="col-span-4 ml-12 font-bold pl-3 pr-3 pt-1 pb-1 bg-white transition-all border border-zinc-100 text-zinc-700">
-    Trade
-  </button>
+  <div class="md:flex flex-row items-center hidden">
+    <div class="w-24">
+      <span class="text-zinc-700 text-sm">{{ market.bp | Dollar }}</span>
+    </div>
+    <div class="w-24 mr-8">
+      <span class="text-zinc-700 text-sm">{{ market.ap | Dollar }}</span>
+    </div>
+    <button
+      class="font-bold pl-3 pr-3 pt-1 pb-1 bg-white transition-all border border-zinc-100 text-zinc-700"
+    >
+      Trade
+    </button>
+  </div>
+  <div class="block md:hidden">
+    <span class="text-zinc-700 text-sm">{{ market.ap | Dollar }}</span>
+  </div>
 </div>
