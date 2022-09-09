@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
-import { ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class ChartService {
   constructor(private auth: AuthService, private http: HttpClient) {}
 
   chart: Subject<any> = new Subject();
+  percentage: BehaviorSubject<number> = new BehaviorSubject(0);
 
   initChartData() {
     const headers = new HttpHeaders({

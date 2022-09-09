@@ -21,13 +21,13 @@ export class HistoryService {
 
   history: Subject<any> = new Subject();
 
-  async getHistory() {
+  getHistory() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
 
-    await this.http
+    this.http
       .get(envConfig.baseUrl + 'history', { headers: headers })
       .subscribe((data) => {
         this.history.next(data);

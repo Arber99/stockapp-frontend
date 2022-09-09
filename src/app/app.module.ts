@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http'
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,15 +17,16 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CardStockComponent } from './components/card-stock/card-stock.component';
 import { MarketComponent } from './pages/market/market.component';
 import { DollarPipe } from './pipes/dollar.pipe';
-import { StockPopupComponent } from './components/stock-popup/stock-popup.component';
+import { StockPopupComponent } from './functions/stock-popup/stock-popup.component';
 import { DatePipe } from './pipes/date.pipe';
-import { HistoryComponent } from './components/history/history.component';
+import { HistoryComponent } from './functions/history/history.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { CardMarketComponent } from './components/card-market/card-market.component';
-import { ChartComponent } from './components/chart/chart.component';
-import { StockChartComponent } from './components/stock-chart/stock-chart.component';
+import { ChartComponent } from './functions/chart/chart.component';
+import { StockChartComponent } from './functions/stock-chart/stock-chart.component';
+import { PercentPipe } from './pipes/percent.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,8 @@ import { StockChartComponent } from './components/stock-chart/stock-chart.compon
     ExploreComponent,
     CardMarketComponent,
     ChartComponent,
-    StockChartComponent
+    StockChartComponent,
+    PercentPipe,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +60,9 @@ import { StockChartComponent } from './components/stock-chart/stock-chart.compon
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

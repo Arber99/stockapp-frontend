@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
-import { History } from 'src/app/services/history.service';
 import { MarketService } from 'src/app/services/market.service';
-import { TokenService } from 'src/app/services/token.service';
 import { Market } from '../market/market.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { ChartService } from 'src/app/services/chart.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 export type Stock = {
   ticker: string;
@@ -26,8 +27,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private account: AccountService,
     private marketService: MarketService,
-    private tokenService: TokenService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private chartService: ChartService,
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   faPlus = faPlus;
@@ -38,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   marketList: Subscription = new Subscription();
   accountCash: Subscription = new Subscription();
   accountStocks: Subscription = new Subscription();
+  percentageSubscription: Subscription = new Subscription();
 
   stocks: any = [];
   cash: number = 0;
@@ -51,12 +55,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ap: 0,
     total: 0,
   };
+  percentage: number = 0;
 
   ngOnInit(): void {
-    this.tokenService.isExpired();
-    this.cash = this.account.getCash();
-    this.stocks = this.account.getStocks();
+    if(this.auth.isExpired()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.account.getUserData();
+    this.account.getStockData();
+    this.marketService.initMarketData();
 
+    //Subscriptions
+    this.percentageSubscription = this.chartService.percentage.subscribe((data) => {
+      this.percentage = data;
+    })
+    this.marketData = this.marketService.getMarketData();
     this.accountCash = this.account.cash.subscribe((data: number) => {
       this.cash = data;
     });
@@ -64,20 +78,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.stocks = data;
       this.calculatePortfolio();
     });
-    this.marketData = this.marketService.getMarketData();
     this.marketList = this.marketService.market.subscribe({
       next: (data: any) => {
         this.market = data.marketData;
         this.status = data.marketStatus;
         this.calculatePortfolio();
       },
-      error: (error) => {
-        this.marketData.unsubscribe();
-      },
     });
   }
 
   ngOnDestroy(): void {
+    this.percentageSubscription.unsubscribe();
     this.marketData.unsubscribe();
     this.marketList.unsubscribe();
     this.accountCash.unsubscribe();
@@ -85,8 +96,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   calculatePortfolio() {
-    const portfolio: Stock[] = [];
+    if (this.stocks.length === 0 || this.market.length === 0) {
+      return;
+    }
+
+    let portfolio: Stock[] = [];
     let portfolioValue: number = 0;
+
     this.stocks.forEach((stock: any) => {
       stock.bp = this.market.find(
         (element) => element.ticker === stock.ticker.toString()
@@ -110,7 +126,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.portfolioService.portfolio.next({
       stocks: this.stocks,
       cash: this.cash,
-    })
+    });
   }
 
   setTrade(stock: Stock) {

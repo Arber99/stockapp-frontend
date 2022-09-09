@@ -44,7 +44,7 @@
       <a [routerLink]="'/signup'" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="isAuthorized">
-      <span>Hello,&nbsp;&nbsp;{{ userId }}</span>
+      <span>Hello,&nbsp;&nbsp;{{ name }}</span>
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
       <a

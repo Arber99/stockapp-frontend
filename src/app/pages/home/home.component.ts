@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'page-home',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private auth: AuthService, private account: AccountService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    if (!this.auth.isExpired()) {
+      this.account.getUserData();
+    }
+  }
 }

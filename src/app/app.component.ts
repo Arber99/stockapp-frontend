@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from './services/account.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,6 @@ import { AccountService } from './services/account.service';
 export class AppComponent {
   title = 'stockapp-frontend';
 
-  constructor(private account: AccountService) {
-    if (localStorage.getItem('access_token')) {
-      this.account.getUserData();
-      this.account.getStockData();
-    }
-  }
+  constructor() {}
 
 }

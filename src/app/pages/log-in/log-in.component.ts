@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -8,9 +10,14 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent implements OnInit {
-  constructor(private account: AccountService) {}
+  constructor(private account: AccountService, private auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    if(!this.auth.isExpired()) {
+      this.router.navigate(['dashboard'])
+    }
+  }
+
   logInForm = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),

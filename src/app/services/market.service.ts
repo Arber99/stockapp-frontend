@@ -18,23 +18,20 @@ export class MarketService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
-    return interval(60000)
-      .pipe(startWith(0))
-      .subscribe(() => {
-        this.http
-          .get(envConfig.baseUrl + 'market', { headers: headers })
-          .subscribe({
-            next: (data: any) => {
-              this.market.next(data);
-              this.status = data.marketStatus;
-            },
-            error: (error) => {
-              console.warn('Your user token has expired, please login again.');
-              this.market.error(error);
-              this.auth.flushToken();
-            },
-          });
-      });
+    return interval(60000).subscribe(() => {
+      this.http
+        .get(envConfig.baseUrl + 'market', { headers: headers })
+        .subscribe({
+          next: (data: any) => {
+            this.market.next(data);
+            this.status = data.marketStatus;
+          },
+          error: (error) => {
+            console.warn('Your user token has expired, please login again.');
+            this.auth.flushToken();
+          },
+        });
+    });
   }
 
   initMarketData() {
@@ -43,18 +40,17 @@ export class MarketService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
-    .get(envConfig.baseUrl + 'market', { headers: headers })
-    .subscribe({
-      next: (data: any) => {
-        this.market.next(data);
-        this.status = data.marketStatus;
-      },
-      error: (error) => {
-        console.warn('Your user token has expired, please login again.');
-        this.market.error(error);
-        this.auth.flushToken();
-      },
-    });
+      .get(envConfig.baseUrl + 'market', { headers: headers })
+      .subscribe({
+        next: (data: any) => {
+          this.market.next(data);
+          this.status = data.marketStatus;
+        },
+        error: (error) => {
+          console.warn('Your user token has expired, please login again.');
+          this.auth.flushToken();
+        },
+      });
   }
 
   getStatus() {
