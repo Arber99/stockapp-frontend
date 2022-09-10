@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Stock } from 'src/app/pages/dashboard/dashboard.component';
 import { MarketService } from 'src/app/services/market.service';
@@ -33,6 +34,8 @@ export class StockPopupComponent implements OnInit, OnDestroy {
   mode: 'sell' | 'buy' = 'buy';
   status: boolean = false;
   market$: Subscription = new Subscription();
+  faTriangleExclamation = faTriangleExclamation;
+  spread: boolean = false;
 
   ngOnInit() {
     this.market$ = this.marketService.market.subscribe((data) => {
@@ -43,7 +46,14 @@ export class StockPopupComponent implements OnInit, OnDestroy {
       this.stock.ap = data.marketData.find(
         (element: any) => element.ticker === this.stock.ticker.toString()
       )?.ap;
+
+      if((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
+        this.spread = true;
+      }
     });
+    if((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
+      this.spread = true;
+    }
   }
 
   ngOnDestroy() {

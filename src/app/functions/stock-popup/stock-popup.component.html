@@ -62,6 +62,7 @@
         <button
           *ngIf="mode === 'buy'"
           class="mt-4 bg-green-400 text-sm text-white font-bold p-2"
+          [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400' "
           (click)="buyStock(stock.ticker, amount)"
         >
           Buy
@@ -73,6 +74,9 @@
         >
           Sell
         </button>
+        <span class="text-center text-orange-600 text-xs mt-1" *ngIf="spread"
+        ><fa-icon [icon]="faTriangleExclamation"></fa-icon> Bid/Ask spread is {{ ((this.stock.ap - this.stock.bp) / this.stock.ap) * 100 | Percent }}</span
+      >
       </div>
       <div disabled *ngIf="!status" class="flex flex-col">
         <button
