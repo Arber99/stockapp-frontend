@@ -12,6 +12,8 @@ export class ChartService {
 
   chart: Subject<any> = new Subject();
   percentage: BehaviorSubject<number> = new BehaviorSubject(0);
+  networth: BehaviorSubject<number> = new BehaviorSubject(0);
+  actual: BehaviorSubject<number> = new BehaviorSubject(0);
 
   initChartData() {
     const headers = new HttpHeaders({

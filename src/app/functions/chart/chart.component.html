@@ -6,8 +6,42 @@
   <li>1Y</li>
   <li>5Y</li>
 </ul>
-<svg viewBox="0 0 702 310" class="pl-6 pr-6">
-  <g transform="translate(0,  25)">
+<svg viewBox="0 0 702 310" class="ml-6 mr-6 group" (mousemove)="line($event)" (mouseleave)="setLine(false)">
+  <g transform="translate(0, 0)" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="'M0,106 L702,106'"
+      [attr.stroke]="'#F2F2F255'"
+      stroke-width="3px"
+    ></path>
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="'M0,9 L702,9'"
+      [attr.stroke]="'#F2F2F255'"
+      stroke-width="3px"
+    ></path>
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="'M0,203 L702,203'"
+      [attr.stroke]="'#F2F2F255'"
+      stroke-width="3px"
+    ></path>
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="'M0,300 L702,300'"
+      [attr.stroke]="'#F2F2F255'"
+      stroke-width="3px"
+    ></path>
+  </g>
+  <g transform="translate(0, 25)">
     <path
       id="chartPriceLine"
       class="price-line"
@@ -15,6 +49,16 @@
       [attr.d]="path"
       [attr.stroke]="positive ? '#93DD93' : '#FF9393'"
       stroke-width="3px"
+    ></path>
+  </g>
+  <g transform="translate(0, 0)" *ngIf="isLine">
+    <path
+      id="chartPriceLine"
+      class="price-line"
+      fill="none"
+      [attr.d]="'M' + this.pathLine + ',0 L' + this.pathLine + ',400'"
+      [attr.stroke]="'#000000'"
+      stroke-width="0.5px"
     ></path>
   </g>
 </svg>

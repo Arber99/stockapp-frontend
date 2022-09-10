@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChartService } from 'src/app/services/chart.service';
+import { MarketService } from 'src/app/services/market.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -13,17 +14,26 @@ export class ChartComponent implements OnInit, OnDestroy {
   constructor(
     private chartService: ChartService,
     private portfolioService: PortfolioService,
+    private marketService: MarketService,
     private auth: AuthService
   ) {}
 
   portfolio: Subscription = new Subscription();
   chartSubscription: Subscription = new Subscription();
+  actualSubscription: Subscription = new Subscription();
+  market$: Subscription = new Subscription();
+
   chartPortfolio: number[] = [];
   stocks: any[] = [];
+  status: boolean = false;
   cash: number = 0;
   path = '';
   positive = true;
   chart: any[] = [];
+  pathLine: number = 0;
+  isLine: boolean = false;
+  index: number = 0;
+  actual: number = 0;
 
   ngOnInit() {
     if (this.auth.isExpired()) {
@@ -42,7 +52,14 @@ export class ChartComponent implements OnInit, OnDestroy {
         this.chart = data;
         this.calculateChart();
       },
-      error: (error) => {},
+    });
+    this.actualSubscription = this.chartService.actual.subscribe({
+      next: (data: number) => {
+        this.actual = data;
+      },
+    });
+    this.market$ = this.marketService.market.subscribe((data) => {
+      this.status = data.marketStatus;
     });
   }
 
@@ -78,6 +95,10 @@ export class ChartComponent implements OnInit, OnDestroy {
       return !Number.isNaN(value);
     });
 
+    if (this.status) {
+      this.chartPortfolio.push(this.actual);
+    }
+
     const min = Math.min(...this.chartPortfolio);
     const max = Math.max(...this.chartPortfolio);
     const diff = max - min;
@@ -91,16 +112,46 @@ export class ChartComponent implements OnInit, OnDestroy {
     });
 
     if (this.chartPortfolio.length > 0) {
-      this.chartService.percentage.next(
-        (this.chartPortfolio[this.chartPortfolio.length - 1] /
-          this.chartPortfolio[0] -
-          1) *
-          100
+      this.setPercentage(
+        this.chartPortfolio[0],
+        this.chartPortfolio[this.chartPortfolio.length - 1]
       );
     }
 
-    this.chartPortfolio[0] < this.chartPortfolio[this.chartPortfolio.length - 1]
+    this.chartPortfolio[0] <=
+    this.chartPortfolio[this.chartPortfolio.length - 1]
       ? (this.positive = true)
       : (this.positive = false);
+  }
+
+  line(e: any) {
+    let rect = e.target.getBoundingClientRect();
+    if (rect.width > 0) {
+      this.index = Math.round(((e.clientX - rect.left) / rect.width) * 26);
+      this.pathLine = (this.index * rect.width) / 26;
+      this.setPercentage(
+        this.chartPortfolio[0],
+        this.chartPortfolio[this.index]
+      );
+      this.setLine(true);
+    }
+  }
+
+  setLine(value: boolean) {
+    this.isLine = value;
+
+    if (!value) {
+      this.setPercentage(
+        this.chartPortfolio[0],
+        this.chartPortfolio[this.chartPortfolio.length - 1]
+      );
+    }
+  }
+
+  setPercentage(start: number, end: number) {
+    if (start && end) {
+      this.chartService.percentage.next((end / start - 1) * 100);
+      this.chartService.networth.next(end + this.cash);
+    }
   }
 }

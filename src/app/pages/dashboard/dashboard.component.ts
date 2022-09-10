@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   accountCash: Subscription = new Subscription();
   accountStocks: Subscription = new Subscription();
   percentageSubscription: Subscription = new Subscription();
+  networthSubscription: Subscription = new Subscription();
 
   stocks: any = [];
   cash: number = 0;
@@ -58,7 +59,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   percentage: number = 0;
 
   ngOnInit(): void {
-    if(this.auth.isExpired()) {
+    if (this.auth.isExpired()) {
       this.router.navigate(['/login']);
       return;
     }
@@ -67,9 +68,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.marketService.initMarketData();
 
     //Subscriptions
-    this.percentageSubscription = this.chartService.percentage.subscribe((data) => {
-      this.percentage = data;
-    })
+    this.networthSubscription = this.chartService.networth.subscribe((data) => {
+      this.networth = data;
+    });
+    this.percentageSubscription = this.chartService.percentage.subscribe(
+      (data) => {
+        this.percentage = data;
+      }
+    );
     this.marketData = this.marketService.getMarketData();
     this.accountCash = this.account.cash.subscribe((data: number) => {
       this.cash = data;
@@ -88,6 +94,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.networthSubscription.unsubscribe();
     this.percentageSubscription.unsubscribe();
     this.marketData.unsubscribe();
     this.marketList.unsubscribe();
@@ -121,7 +128,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       portfolioValue += stock.bp * stock.amount;
     });
     this.stocks = portfolio;
-    this.networth = portfolioValue + this.cash;
+    this.chartService.actual.next(portfolioValue);
+    this.chartService.networth.next(portfolioValue + this.cash);
 
     this.portfolioService.portfolio.next({
       stocks: this.stocks,

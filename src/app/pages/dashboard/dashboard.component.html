@@ -3,22 +3,25 @@
   <div
     class="mb-12 mt-32 pl-6 pr-6 xl:pt-0 xl:mt-44 w-[calc(min(1200px,_100vw))]"
   >
-    <div class="flex flex-col gap-4 bg-white cshadow p-6">
+    <div class="flex flex-col gap-3 bg-white cshadow p-6">
       <h2 class="font-bold text-4xl pb-2 xl:text-3xl text-black">
         Your portfolio
       </h2>
-      <div class="mt-4 lg:mt-8 flex flex-row items-center">
+      <div class="mt-4 flex flex-row items-center">
         <div class="flex flex-row items-end">
           <span class="text-zinc-900 font-bold text-2xl lg:text-2xl">{{
             networth | Dollar
           }}</span>
-          <span class="pl-2 mb-[6px] text-sm text-green-500 font-bold"
+          <span
+            class="pl-2 mb-[5px] text-sm text-green-500 font-bold"
+            [ngClass]="percentage >= 0 ? 'text-green-500' : 'text-red-500'"
             >({{ percentage | Percent }})</span
           >
         </div>
       </div>
       <div>
-        <span class="text-white bg-green-400 p-1 pl-3 pr-3 font-bold text-lg"
+        <span
+          class="text-white bg-green-400 p-1 pl-3 pr-3 font-semibold text-sm"
           >Cash: {{ cash | Dollar }}</span
         >
       </div>
