@@ -21,7 +21,6 @@ export class StockPopupComponent implements OnInit, OnDestroy {
     private stockService: StockService,
     private marketService: MarketService
   ) {}
-  @Output() trade: EventEmitter<{}> = new EventEmitter();
   @Input() stock: Stock = {
     ticker: '',
     amount: 0,
@@ -51,10 +50,6 @@ export class StockPopupComponent implements OnInit, OnDestroy {
     this.market$.unsubscribe();
   }
 
-  closeTrade() {
-    this.trade.emit();
-  }
-
   setMode(mode: 'sell' | 'buy') {
     this.mode = mode;
   }
@@ -62,14 +57,12 @@ export class StockPopupComponent implements OnInit, OnDestroy {
   buyStock(ticker: string, amount: number) {
     if (Number.isInteger(parseInt(amount.toString()))) {
       this.stockService.buyStock(ticker, parseInt(amount.toString()));
-      this.closeTrade();
     }
   }
 
   sellStock(ticker: string, amount: number) {
     if (Number.isInteger(parseInt(amount.toString()))) {
       this.stockService.sellStock(ticker, parseInt(amount.toString()));
-      this.closeTrade();
     }
   }
 }

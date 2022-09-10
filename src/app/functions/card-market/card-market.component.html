@@ -1,5 +1,7 @@
 <div
   class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white hover:bg-zinc-50 transition-colors duration-300 cursor-pointer"
+  [ngClass]="market.ticker === popup ? 'shadow-md drop-shadow-sm' : ''"
+  (click)="popupStock(market['ticker'])"
 >
   <div class="flex flex-row gap-6 items-center">
     <div class="w-8">
@@ -27,3 +29,7 @@
     <span class="text-zinc-700 text-sm">{{ market.ap | Dollar }}</span>
   </div>
 </div>
+<comp-stock-popup
+[stock]="market"
+*ngIf="market.ticker === popup"
+></comp-stock-popup>

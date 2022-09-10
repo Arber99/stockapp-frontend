@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     total: 0,
   };
   percentage: number = 0;
+  popup: string = '';
 
   ngOnInit(): void {
     if (this.auth.isExpired()) {
@@ -135,14 +136,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
       stocks: this.stocks,
       cash: this.cash,
     });
-  }
-
-  setTrade(stock: Stock) {
-    this.trade = stock;
-    this.isTrade = true;
-  }
-
-  disableTrade() {
-    this.isTrade = false;
   }
 }

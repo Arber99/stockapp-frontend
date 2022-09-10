@@ -1,10 +1,3 @@
-.bg:after {
-    content:'';
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:100vw;
-    height:100vh;
-    backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.5);
-  }
+.shadowf {
+  box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.12);
+}
