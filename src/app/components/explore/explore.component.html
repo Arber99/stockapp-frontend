@@ -1,15 +1,17 @@
-<div class="mt-8 cshadow after:block after:pt-[100%] relative cursor-pointer">
-  <img
-    src="../../../assets/coin-stack.png"
-    class="absolute z-0 pointer-events-none select-none"
-  />
-  <h3 class="text-xl font-bold absolute z-10 text-white p-6">Explore</h3>
+<div
+  class="mt-8 cshadow p-6 pb-2 h-min text-white bg-indigo-400 cursor-pointer"
+  [routerLink]="'/'"
+>
+  <h3 class="text-xl font-bold">Explore</h3>
+  <p class="flex flex-col mt-6 mb-6">
+    Explore all available features
+  </p>
   <div
-    class="bg-white w-min w-10 h-10 z-10 flex justify-center items-center rounded-full mb-6 bottom-0 left-0 ml-6 absolute"
+    class="bg-white w-min w-10 h-10 flex justify-center items-center rounded-full mb-4"
   >
     <fa-icon
       [icon]="faArrowRight"
-      class="text-purple-900 rounded-[100%]"
+      class="text-indigo-400 rounded-[100%]"
     ></fa-icon>
   </div>
 </div>
