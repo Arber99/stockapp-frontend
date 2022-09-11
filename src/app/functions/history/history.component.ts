@@ -39,4 +39,8 @@ export class HistoryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.historyData.unsubscribe();
   }
+
+  limitLength() {
+    return Math.min(8, history.length)
+  }
 }

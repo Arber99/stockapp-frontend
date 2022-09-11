@@ -1,9 +1,17 @@
 <div class="mt-8 cshadow pt-6 h-min">
-    <h3 class="text-xl font-bold p-6">History</h3>
-    <span *ngIf="history.length === 0" class="italic text-zinc-400 ml-6 mb-6 block">No history available</span>
-    <ul class="flex flex-col">
-      <li *ngFor="let entry of history.slice().reverse()" class="grid grid-cols-10 gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300">
-        <div class="flex flex-col col-span-2">
+  <h3 class="text-xl font-bold p-6">History</h3>
+  <span
+    *ngIf="history.length === 0"
+    class="italic text-zinc-400 ml-6 mb-6 block"
+    >No history available</span
+  >
+  <ul class="flex flex-col">
+    <li
+      *ngFor="let entry of history.reverse().slice(0, limitLength())"
+      class="flex flex-row justify-between gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300"
+    >
+      <div class="flex flex-row items-start gap-6">
+        <div class="flex flex-col">
           <div class="w-min text-center">
             <fa-icon
               [icon]="entry.type === 'Buy' ? faArrowRight : faArrowLeft"
@@ -12,17 +20,29 @@
             <span class="text-xs">{{ entry.createdAt | Date }}</span>
           </div>
         </div>
-        <div class="flex flex-col items-start col-span-5">
+        <div class="flex flex-col items-start">
           <span class="font-bold text-sm">{{ entry.ticker }}</span>
-          <span class="text-xs">{{ entry.type === 'Buy' ? 'Bought' :'Sold'}} {{ entry.amount }}x {{ entry.ticker }} at {{ entry.price | Dollar }}</span>
+          <span class="text-xs"
+            >{{ entry.type === "Buy" ? "Bought" : "Sold" }} {{ entry.amount }}x
+            {{ entry.ticker }} at {{ entry.price | Dollar }}</span
+          >
         </div>
-        <div class="col-span-3">
-          <span class="font-bold whitespace-nowrap text-right"
-          [ngClass]="entry.amount * entry.price < 100000 ? 'text-xs': 'text-[10px]'">{{ entry.type === 'Buy' ? '-' :'+'}} {{ entry.amount * entry.price | Dollar }}</span>
-        </div>
-      </li>
-    </ul>
-    <div class="mt-4 pb-4 text-center" *ngIf="history.length !== 0">
-        <a [routerLink]="'/history'" class="text-zinc-400 font-bold text-sm text-center">View full history</a>
-    </div>
+      </div>
+      <span
+        class="font-bold whitespace-nowrap text-right"
+        [ngClass]="
+          entry.amount * entry.price < 100000 ? 'text-xs' : 'text-[10px]'
+        "
+        >{{ entry.type === "Buy" ? "-" : "+" }}
+        {{ entry.amount * entry.price | Dollar }}</span
+      >
+    </li>
+  </ul>
+  <div class="mt-4 pb-4 text-center" *ngIf="history.length !== 0">
+    <a
+      [routerLink]="'/history'"
+      class="text-zinc-400 font-bold text-sm text-center"
+      >View full history</a
+    >
   </div>
+</div>

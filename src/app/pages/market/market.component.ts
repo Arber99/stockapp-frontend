@@ -21,10 +21,13 @@ export class MarketComponent implements OnInit, OnDestroy {
     private marketService: MarketService,
     private account: AccountService,
     private auth: AuthService,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   isTrade: boolean = false;
   trade: any;
+  page: number = 0;
+  pages: number = 0;
 
   market: Market = [];
   status: boolean = false;
@@ -32,7 +35,7 @@ export class MarketComponent implements OnInit, OnDestroy {
   marketList: Subscription = new Subscription();
 
   ngOnInit(): void {
-    if(this.auth.isExpired()) {
+    if (this.auth.isExpired()) {
       this.router.navigate(['/login']);
       return;
     }
@@ -45,9 +48,12 @@ export class MarketComponent implements OnInit, OnDestroy {
     this.marketData = this.marketService.getMarketData();
     this.marketList = this.marketService.market.subscribe({
       next: (data: any) => {
-        this.market = data.marketData;
+        this.market = data.marketData.sort((a: any, b: any) =>
+          a.ticker > b.ticker ? 1 : -1
+        );
+        this.pages = Math.floor(this.market.length / 15 + 1);
         this.status = data.marketStatus;
-      }
+      },
     });
   }
 
@@ -63,5 +69,9 @@ export class MarketComponent implements OnInit, OnDestroy {
 
   disableTrade() {
     this.isTrade = false;
+  }
+
+  setPage(page: number) {
+    this.page = page;
   }
 }
