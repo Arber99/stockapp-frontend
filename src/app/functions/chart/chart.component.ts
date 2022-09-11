@@ -128,7 +128,13 @@ export class ChartComponent implements OnInit, OnDestroy {
     let rect = e.target.getBoundingClientRect();
     if (rect.width > 0) {
       this.index = Math.round(((e.clientX - rect.left) / rect.width) * 26);
-      this.pathLine = (this.index * rect.width) / 26;
+
+      if (this.index === this.chartPortfolio.length - 1) {
+        this.pathLine = (this.index * rect.width) / 26 - 2;
+      } else {
+        this.pathLine = Math.max(1, (this.index * rect.width) / 26);
+      }
+
       this.setPercentage(
         this.chartPortfolio[0],
         this.chartPortfolio[this.index]
