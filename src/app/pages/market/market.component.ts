@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { dictionary } from 'src/app/dictionary/dictionary';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MarketService } from 'src/app/services/market.service';
@@ -28,8 +29,10 @@ export class MarketComponent implements OnInit, OnDestroy {
   trade: any;
   page: number = 0;
   pages: number = 0;
+  search: string = '';
 
   market: Market = [];
+  found: Market = [];
   status: boolean = false;
   marketData: Subscription = new Subscription();
   marketList: Subscription = new Subscription();
@@ -51,7 +54,7 @@ export class MarketComponent implements OnInit, OnDestroy {
         this.market = data.marketData.sort((a: any, b: any) =>
           a.ticker > b.ticker ? 1 : -1
         );
-        this.pages = Math.floor(this.market.length / 15 + 1);
+        this.filter(this.search);
         this.status = data.marketStatus;
       },
     });
@@ -73,5 +76,20 @@ export class MarketComponent implements OnInit, OnDestroy {
 
   setPage(page: number) {
     this.page = page;
+  }
+
+  filter(input: string) {
+    this.search = input;
+    this.found = this.market.slice().filter((market) => {
+      return (
+        market.ticker.toLowerCase().includes(input.toLowerCase()) ||
+        dictionary[market.ticker].toLowerCase().includes(input.toLowerCase())
+      );
+    });
+    this.pages = Math.floor(this.found.length / 15 + 1);
+    
+    if(this.page >= this.pages) {
+      this.setPage(0);
+    }
   }
 }

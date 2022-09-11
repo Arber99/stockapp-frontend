@@ -15,6 +15,8 @@
           <input
             class="max-w-[160px] ml-4 overflow-hidden font-semibold border text-xs p-1 pl-2 pr-2 focus:outline-none focus:border-black"
             placeholder="company, ticker..."
+            #input
+            (input)="filter(input.value)"
           />
         </div>
         <div class="cshadow">
@@ -42,7 +44,7 @@
                 </div>
               </div>
             </li>
-            <li *ngFor="let stock of market.slice(page * 15, (page + 1) * 15)">
+            <li *ngFor="let stock of found.slice(page * 15, (page + 1) * 15)">
               <comp-card-market
                 [market]="stock"
                 (click)="setTrade(stock)"
