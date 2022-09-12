@@ -13,11 +13,11 @@ export type Market = {
 }[];
 
 @Component({
-  selector: 'app-market',
+  selector: 'page-market',
   templateUrl: './market.component.html',
   styleUrls: ['./market.component.scss'],
 })
-export class MarketComponent implements OnInit, OnDestroy {
+export class MarketPage implements OnInit, OnDestroy {
   constructor(
     private marketService: MarketService,
     private account: AccountService,

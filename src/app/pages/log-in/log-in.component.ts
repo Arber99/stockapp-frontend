@@ -5,11 +5,11 @@ import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-log-in',
+  selector: 'page-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss'],
 })
-export class LogInComponent implements OnInit {
+export class LogInPage implements OnInit {
   constructor(private account: AccountService, private auth: AuthService, private router: Router) {}
 
   ngOnInit() {

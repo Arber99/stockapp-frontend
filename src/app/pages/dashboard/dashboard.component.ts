@@ -19,11 +19,11 @@ export type Stock = {
 };
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'page-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardPage implements OnInit, OnDestroy {
   constructor(
     private account: AccountService,
     private marketService: MarketService,

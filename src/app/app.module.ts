@@ -9,13 +9,13 @@ import { MainComponent } from './components/main/main.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
 import { CardComponent } from './components/card/card.component';
 import { CourseComponent } from './components/course/course.component';
-import { HomeComponent } from './pages/home/home.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { LogInComponent } from './pages/log-in/log-in.component';
+import { HomePage } from './pages/home/home.component';
+import { SignUpPage } from './pages/sign-up/sign-up.component';
+import { LogInPage } from './pages/log-in/log-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardPage } from './pages/dashboard/dashboard.component';
 import { CardStockComponent } from './functions/card-stock/card-stock.component';
-import { MarketComponent } from './pages/market/market.component';
+import { MarketPage } from './pages/market/market.component';
 import { DollarPipe } from './pipes/dollar.pipe';
 import { StockPopupComponent } from './functions/stock-popup/stock-popup.component';
 import { DatePipe } from './pipes/date.pipe';
@@ -28,6 +28,7 @@ import { ChartComponent } from './functions/chart/chart.component';
 import { StockChartComponent } from './functions/stock-chart/stock-chart.component';
 import { PercentPipe } from './pipes/percent.pipe';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
+import { HistoryPage } from './pages/history/history.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +38,12 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
     IntroductionComponent,
     CardComponent,
     CourseComponent,
-    HomeComponent,
-    SignUpComponent,
-    LogInComponent,
-    DashboardComponent,
+    HomePage,
+    SignUpPage,
+    LogInPage,
+    DashboardPage,
     CardStockComponent,
-    MarketComponent,
+    MarketPage,
     DollarPipe,
     StockPopupComponent,
     DatePipe,
@@ -55,6 +56,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
     StockChartComponent,
     PercentPipe,
     WrapperComponent,
+    HistoryPage,
   ],
   imports: [
     BrowserModule,
