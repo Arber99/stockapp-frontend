@@ -29,6 +29,7 @@ import { StockChartComponent } from './functions/stock-chart/stock-chart.compone
 import { PercentPipe } from './pipes/percent.pipe';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { HistoryPage } from './pages/history/history.component';
+import { ImprintPage } from './pages/imprint/imprint.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HistoryPage } from './pages/history/history.component';
     PercentPipe,
     WrapperComponent,
     HistoryPage,
+    ImprintPage,
   ],
   imports: [
     BrowserModule,

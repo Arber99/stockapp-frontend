@@ -3,11 +3,11 @@ import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'page-history',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.scss'],
+  selector: 'page-imprint',
+  templateUrl: './imprint.component.html',
+  styleUrls: ['./imprint.component.scss'],
 })
-export class HistoryPage implements OnInit {
+export class ImprintPage implements OnInit {
   constructor(private auth: AuthService, private account: AccountService) {}
 
   ngOnInit() {
