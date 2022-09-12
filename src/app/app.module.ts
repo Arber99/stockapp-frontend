@@ -30,6 +30,7 @@ import { PercentPipe } from './pipes/percent.pipe';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { HistoryPage } from './pages/history/history.component';
 import { ImprintPage } from './pages/imprint/imprint.component';
+import { TermsPage } from './pages/terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ImprintPage } from './pages/imprint/imprint.component';
     WrapperComponent,
     HistoryPage,
     ImprintPage,
+    TermsPage,
   ],
   imports: [
     BrowserModule,
