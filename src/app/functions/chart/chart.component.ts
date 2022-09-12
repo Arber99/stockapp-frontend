@@ -102,6 +102,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     const min = Math.min(...this.chartPortfolio);
     const max = Math.max(...this.chartPortfolio);
     const diff = max - min;
+    this.path = '';
 
     this.chartPortfolio.forEach((element, index) => {
       if (index == 0) {

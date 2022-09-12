@@ -21,7 +21,6 @@ export class StockService {
         { headers: headers }
       )
       .subscribe((data) => {
-        console.log(data);
       });
   }
 
@@ -37,7 +36,6 @@ export class StockService {
         { headers: headers }
       )
       .subscribe((data) => {
-        console.log(data);
       });
   }
 }

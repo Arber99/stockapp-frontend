@@ -34,13 +34,16 @@ export class StockPopupComponent implements OnInit, OnDestroy {
   mode: 'sell' | 'buy' = 'buy';
   status: boolean = false;
   market$: Subscription = new Subscription();
+  status$: Subscription = new Subscription();
   faTriangleExclamation = faTriangleExclamation;
   spread: boolean = false;
 
   ngOnInit() {
+    this.status$ = this.marketService.status.subscribe((data: boolean) => {
+      this.status = data;
+    })
     this.market$ = this.marketService.market.subscribe((data) => {
-      this.status = data.marketStatus;
-      this.stock.bp = data.marketData.find(
+      this.stock.bp = data.find(
         (element: any) => element.ticker === this.stock.ticker.toString()
       )?.bp;
       this.stock.ap = data.marketData.find(
@@ -58,6 +61,7 @@ export class StockPopupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.market$.unsubscribe();
+    this.status$.unsubscribe();
   }
 
   setMode(mode: 'sell' | 'buy') {

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { interval, Subject } from 'rxjs';
+import { BehaviorSubject, interval, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
 
@@ -11,6 +11,7 @@ export class MarketService {
   constructor(private auth: AuthService, private http: HttpClient) {}
 
   market: Subject<any> = new Subject();
+  status: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   getMarketData() {
     const headers = new HttpHeaders({
@@ -41,7 +42,8 @@ export class MarketService {
       .get(envConfig.baseUrl + 'market', { headers: headers })
       .subscribe({
         next: (data: any) => {
-          this.market.next(data);
+          this.market.next(data.marketData);
+          this.status.next(data.marketStatus);
         },
         error: (error) => {
           console.warn('Your user token has expired, please login again.');

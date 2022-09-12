@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
 
   market: Market = [];
-  status: boolean = false;
   marketData: Subscription = new Subscription();
   marketList: Subscription = new Subscription();
   accountCash: Subscription = new Subscription();
@@ -87,8 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.marketList = this.marketService.market.subscribe({
       next: (data: any) => {
-        this.market = data.marketData;
-        this.status = data.marketStatus;
+        this.market = data;
         this.calculatePortfolio();
       },
     });

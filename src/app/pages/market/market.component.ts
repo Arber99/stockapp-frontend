@@ -33,7 +33,6 @@ export class MarketComponent implements OnInit, OnDestroy {
 
   market: Market = [];
   found: Market = [];
-  status: boolean = false;
   marketData: Subscription = new Subscription();
   marketList: Subscription = new Subscription();
 
@@ -51,11 +50,10 @@ export class MarketComponent implements OnInit, OnDestroy {
     this.marketData = this.marketService.getMarketData();
     this.marketList = this.marketService.market.subscribe({
       next: (data: any) => {
-        this.market = data.marketData.sort((a: any, b: any) =>
+        this.market = data.sort((a: any, b: any) =>
           a.ticker > b.ticker ? 1 : -1
         );
         this.filter(this.search);
-        this.status = data.marketStatus;
       },
     });
   }
@@ -87,8 +85,8 @@ export class MarketComponent implements OnInit, OnDestroy {
       );
     });
     this.pages = Math.floor(this.found.length / 15 + 1);
-    
-    if(this.page >= this.pages) {
+
+    if (this.page >= this.pages) {
       this.setPage(0);
     }
   }
