@@ -27,6 +27,7 @@ import { CardMarketComponent } from './functions/card-market/card-market.compone
 import { ChartComponent } from './functions/chart/chart.component';
 import { StockChartComponent } from './functions/stock-chart/stock-chart.component';
 import { PercentPipe } from './pipes/percent.pipe';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { PercentPipe } from './pipes/percent.pipe';
     ChartComponent,
     StockChartComponent,
     PercentPipe,
+    WrapperComponent,
   ],
   imports: [
     BrowserModule,

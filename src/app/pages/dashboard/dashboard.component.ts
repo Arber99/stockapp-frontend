@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   faPlus = faPlus;
 
-  market: Market = [];
   marketData: Subscription = new Subscription();
   marketList: Subscription = new Subscription();
   accountCash: Subscription = new Subscription();
@@ -47,6 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   cash: number = 0;
   networth: number = 0;
   isTrade: boolean = false;
+  market: Market = [];
   trade: Stock = {
     ticker: '',
     amount: 0,

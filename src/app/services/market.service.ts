@@ -23,7 +23,7 @@ export class MarketService {
         .get(envConfig.baseUrl + 'market', { headers: headers })
         .subscribe({
           next: (data: any) => {
-            this.market.next(data);
+            this.market.next(data.marketData);
           },
           error: (error) => {
             console.warn('Your user token has expired, please login again.');

@@ -1,83 +1,79 @@
 <comp-navbar class="dark"></comp-navbar>
-<div
-  class="flex flex-col max-w-[1200px] pl-6 pr-6 w-full ml-auto mr-auto mb-10 min-h-[calc(max(500px,_100vh))]"
->
-  <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-44 pb-8">
-    <h2 class="font-bold text-4xl pb-2 xl:text-5xl text-black">
-      Browse Stocks
-    </h2>
-    <div class="grid grid-cols-12 lg:gap-12">
-      <div class="mt-8 flex flex-col gap-8 col-span-12 lg:col-span-8 h-min">
-        <div
-          class="cshadow p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row items-center"
-        >
+<comp-wrapper>
+  <div class="grid grid-cols-12 lg:gap-12">
+    <div class="flex flex-col gap-8 col-span-12 lg:col-span-8">
+      <div
+        class="cshadow p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-col gap-6 md:flex-row justify-between items-start md:items-center"
+      >
+        <h2 class="font-bold text-lg text-black">Browse Stocks</h2>
+        <div class="flex flex-row h-min items-center">
           <label class="text-sm font-bold">Search</label>
           <input
-            class="max-w-[160px] ml-4 overflow-hidden font-semibold border text-xs p-1 pl-2 pr-2 focus:outline-none focus:border-black"
+            class="max-w-[160px] ml-4 overflow-hidden font-semibold border border-zinc-300 text-xs p-1 pl-2 pr-2 focus:outline-none focus:border-black"
             placeholder="company, ticker..."
             #input
             (input)="filter(input.value)"
           />
         </div>
-        <div class="cshadow">
-          <ul class="flex flex-col">
-            <li>
-              <div
-                class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white"
-              >
-                <div>
-                  <h3 class="font-bold">Company</h3>
-                </div>
-                <div class="md:flex flex-row hidden">
-                  <div class="w-24">
-                    <span class="font-bold text-zinc-700">Bid</span>
-                  </div>
-                  <div class="w-24">
-                    <span class="text-zinc-700 font-bold">Ask</span>
-                  </div>
-                  <span class="col-span-4 ml-9 mr-3 text-zinc-700 font-bold"
-                    >Action</span
-                  >
-                </div>
-                <div class="md:hidden block">
-                  <span class="col-span-4 text-zinc-700 font-bold">Price</span>
-                </div>
+      </div>
+      <div class="cshadow">
+        <ul class="flex flex-col">
+          <li>
+            <div
+              class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white"
+            >
+              <div>
+                <h3 class="font-bold">Company</h3>
               </div>
-            </li>
-            <li *ngFor="let stock of found.slice(page * 15, (page + 1) * 15)">
-              <comp-card-market
-                [market]="stock"
-                (click)="setTrade(stock)"
-              ></comp-card-market>
+              <div class="md:flex flex-row hidden">
+                <div class="w-24">
+                  <span class="font-bold text-zinc-700">Bid</span>
+                </div>
+                <div class="w-24">
+                  <span class="text-zinc-700 font-bold">Ask</span>
+                </div>
+                <span class="col-span-4 ml-9 mr-3 text-zinc-700 font-bold"
+                  >Action</span
+                >
+              </div>
+              <div class="md:hidden block">
+                <span class="col-span-4 text-zinc-700 font-bold">Price</span>
+              </div>
+            </div>
+          </li>
+          <li *ngFor="let stock of found.slice(page * 15, (page + 1) * 15)">
+            <comp-card-market
+              [market]="stock"
+              (click)="setTrade(stock)"
+            ></comp-card-market>
+          </li>
+        </ul>
+        <div
+          class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row items-center"
+        >
+          <label class="text-sm font-bold">Page</label>
+          <ul class="ml-8 flex flex-row gap-4">
+            <li *ngFor="let item of [].constructor(pages); let i = index">
+              <button
+                class="font-bold text-blue-400 block p-[2px] hover:cursor-pointer"
+                [ngClass]="
+                  i === page
+                    ? 'hover:cursor-default border-b-[3px] border-blue-400'
+                    : ''
+                "
+                (click)="setPage(i)"
+              >
+                {{ i + 1 }}
+              </button>
             </li>
           </ul>
-          <div
-            class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row items-center"
-          >
-            <label class="text-sm font-bold">Page</label>
-            <ul class="ml-8 flex flex-row gap-4">
-              <li *ngFor="let item of [].constructor(pages); let i = index">
-                <button
-                  class="font-bold text-blue-400 block p-[2px] hover:cursor-pointer"
-                  [ngClass]="
-                    i === page
-                      ? 'hover:cursor-default border-b-[3px] border-blue-400'
-                      : ''
-                  "
-                  (click)="setPage(i)"
-                >
-                  {{ i + 1 }}
-                </button>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
-      <div class="col-span-12 lg:col-span-4">
-        <comp-history></comp-history>
-        <comp-learn></comp-learn>
-        <comp-explore></comp-explore>
-      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-4">
+      <comp-history></comp-history>
+      <comp-learn></comp-learn>
+      <comp-explore></comp-explore>
     </div>
   </div>
-</div>
+</comp-wrapper>

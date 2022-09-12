@@ -21,7 +21,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   portfolio: Subscription = new Subscription();
   chartSubscription: Subscription = new Subscription();
   actualSubscription: Subscription = new Subscription();
-  market$: Subscription = new Subscription();
+  status$: Subscription = new Subscription();
 
   chartPortfolio: number[] = [];
   stocks: any[] = [];
@@ -58,14 +58,15 @@ export class ChartComponent implements OnInit, OnDestroy {
         this.actual = data;
       },
     });
-    this.market$ = this.marketService.market.subscribe((data) => {
-      this.status = data.marketStatus;
+    this.status$ = this.marketService.status.subscribe((data) => {
+      this.status = data;
     });
   }
 
   ngOnDestroy() {
     this.portfolio.unsubscribe();
     this.chartSubscription.unsubscribe();
+    this.status$.unsubscribe();
   }
 
   calculateChart(): void {
@@ -96,7 +97,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     });
 
     if (this.status) {
-      this.chartPortfolio.push(this.actual);
+      //this.chartPortfolio.push(this.actual);
     }
 
     const min = Math.min(...this.chartPortfolio);
@@ -128,7 +129,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   line(e: any) {
     let rect = e.target.getBoundingClientRect();
     if (rect.width > 0) {
-      this.index = Math.round(((e.clientX - rect.left) / rect.width) * 26);
+      this.index = Math.min(this.chartPortfolio.length - 1, Math.round(((e.clientX - rect.left) / rect.width) * 26));
 
       if (this.index === this.chartPortfolio.length - 1) {
         this.pathLine = (this.index * rect.width) / 26 - 2;
