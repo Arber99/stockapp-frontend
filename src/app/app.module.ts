@@ -31,6 +31,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { HistoryPage } from './pages/history/history.component';
 import { ImprintPage } from './pages/imprint/imprint.component';
 import { TermsPage } from './pages/terms/terms.component';
+import { PrivacyPage } from './pages/privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { TermsPage } from './pages/terms/terms.component';
     HistoryPage,
     ImprintPage,
     TermsPage,
+    PrivacyPage,
   ],
   imports: [
     BrowserModule,

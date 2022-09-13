@@ -6,6 +6,7 @@ import { HomePage } from './pages/home/home.component';
 import { ImprintPage } from './pages/imprint/imprint.component';
 import { LogInPage } from './pages/log-in/log-in.component';
 import { MarketPage } from './pages/market/market.component';
+import { PrivacyPage } from './pages/privacy/privacy.component';
 import { SignUpPage } from './pages/sign-up/sign-up.component';
 import { TermsPage } from './pages/terms/terms.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'history', component: HistoryPage },
   { path: 'imprint', component: ImprintPage },
   { path: 'terms', component: TermsPage },
+  { path: 'privacy', component: PrivacyPage}
 ];
 
 @NgModule({
