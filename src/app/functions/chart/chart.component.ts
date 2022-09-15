@@ -34,6 +34,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   isLine: boolean = false;
   index: number = 0;
   actual: number = 0;
+  dotted: number = 0;
 
   ngOnInit() {
     if (this.auth.isExpired()) {
@@ -107,9 +108,11 @@ export class ChartComponent implements OnInit, OnDestroy {
 
     this.chartPortfolio.forEach((element, index) => {
       if (index == 0) {
-        this.path += `M${index * 27},${((max - element) / diff) * 300 - 20},`;
+        this.path += `M${index * 28},${((max - element) / diff) * 300 - 20},`;
+        this.dotted = ((max - element) / diff) * 300 - 20;
+        console.log(this.dotted);
       } else {
-        this.path += `L${index * 27},${((max - element) / diff) * 300 - 20},`;
+        this.path += `L${index * 28},${((max - element) / diff) * 300 - 20},`;
       }
     });
 
@@ -129,12 +132,12 @@ export class ChartComponent implements OnInit, OnDestroy {
   line(e: any) {
     let rect = e.target.getBoundingClientRect();
     if (rect.width > 0) {
-      this.index = Math.min(this.chartPortfolio.length - 1, Math.round(((e.clientX - rect.left) / rect.width) * 26));
+      this.index = Math.min(this.chartPortfolio.length - 1, Math.round(((e.clientX - rect.left) / rect.width) * 25));
 
       if (this.index === this.chartPortfolio.length - 1) {
-        this.pathLine = (this.index * rect.width) / 26 - 2;
+        this.pathLine = (this.index * rect.width) / 25 - 4;
       } else {
-        this.pathLine = Math.max(1, (this.index * rect.width) / 26);
+        this.pathLine = Math.max(2, (this.index * rect.width) / 25 - 1);
       }
 
       this.setPercentage(

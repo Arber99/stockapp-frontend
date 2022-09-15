@@ -13,7 +13,7 @@
     *ngIf="currentWindowWidth > 1280; else menu"
   >
     <li>
-      <a href="'/easylanguage'" class="text-white dark:text-zinc-800"
+      <a [routerLink]="'/easylanguage'" class="text-white dark:text-zinc-800"
         ><fa-icon
           [icon]="faBookOpenReader"
           aria-hidden="true"
@@ -23,7 +23,7 @@
       >
     </li>
     <li>
-      <a href="'/accessibility'" class="text-white dark:text-zinc-800"
+      <a [routerLink]="'/accessibility'" class="text-white dark:text-zinc-800"
         ><fa-icon
           [icon]="faCircleInfo"
           aria-hidden="true"
