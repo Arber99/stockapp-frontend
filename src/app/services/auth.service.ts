@@ -20,12 +20,12 @@ export class AuthService {
   }
 
   flushToken() {
-    localStorage.clear();
+    localStorage.setItem('access_token', '');
   }
 
   isExpired() {
     const token = localStorage.getItem('access_token');
-    if (token !== null) {
+    if (token !== null && token?.length !== 0) {
       if (!jwtHelper.isTokenExpired(token)) {
         return false;
       }

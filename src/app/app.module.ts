@@ -33,6 +33,10 @@ import { ImprintPage } from './pages/imprint/imprint.component';
 import { TermsPage } from './pages/terms/terms.component';
 import { PrivacyPage } from './pages/privacy/privacy.component';
 import { AccessibilityPage } from './pages/accessibility/accessibility.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { CookieBannerComponent } from './functions/cookie-banner/cookie-banner.component';
+import { LearnPage } from './pages/learn/learn.component';
+import { AccountPage } from './pages/account/account.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +62,17 @@ import { AccessibilityPage } from './pages/accessibility/accessibility.component
     CardMarketComponent,
     ChartComponent,
     StockChartComponent,
+    CookieBannerComponent,
     PercentPipe,
     WrapperComponent,
+    NavigationComponent,
     HistoryPage,
     ImprintPage,
     TermsPage,
     PrivacyPage,
     AccessibilityPage,
+    LearnPage,
+    AccountPage,
   ],
   imports: [
     BrowserModule,

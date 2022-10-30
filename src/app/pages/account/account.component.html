@@ -1,0 +1,37 @@
+<comp-navbar class="dark"></comp-navbar>
+<comp-wrapper>
+  <div class="cshadow p-6 flex flex-col items-start gap-4">
+    <h2 class="pb-2 text-lg font-bold">My Account</h2>
+    <h3>Account Info</h3>
+    <div class="flex flex-row items-center">
+      <span>Name:</span>
+      <input
+        class="ml-3 bg-gray-200 p-2 pb-1 pt-1 w-48"
+        disabled
+        [value]="name"
+      />
+    </div>
+    <div class="flex flex-row items-center">
+      <span>E-Mail:</span>
+      <input
+        class="ml-3 bg-gray-200 p-2 pb-1 pt-1 w-48"
+        disabled
+        [value]="email"
+      />
+    </div>
+    <button
+      class="mt-8 p-2 pt-1 pb-1 border-[3px] border-red-400 bg-red-400 text-white font-bold hover:border-red-500 hover:bg-red-500 transition-colors duration-300 disabled:border-gray-400 disabled:bg-gray-400"
+      [disabled]="isDelete"
+      (click)="deletePopup()"
+    >
+      Delete Account
+    </button>
+    <div *ngIf="isDelete">
+      <h4 class="text-red-600">
+        Are you sure you want to permanently delete your account? This action
+        cannot be reversed.
+      </h4>
+      <button class="text-sm font-bold" (click)="deleteAccount()">> Yes, delete my account</button>
+    </div>
+  </div>
+</comp-wrapper>

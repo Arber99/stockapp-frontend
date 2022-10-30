@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-accessibility',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accessibility.component.scss']
 })
 export class AccessibilityPage implements OnInit {
+  constructor(private auth: AuthService, private account: AccountService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    if (!this.auth.isExpired()) {
+      this.account.getUserData();
+    }
   }
-
 }

@@ -1,0 +1,50 @@
+<div
+  *ngIf="hasCookieBanner"
+  class="fixed z-20 bottom-10 cshadow p-3 left-10 right-10 bg-white flex flex-col lg:flex-row items-start gap-4 lg:pb-0 lg:items-end lg:gap-8 border"
+>
+  <div>
+    <p class="p-3">
+      We use essential cookies to optimize your browsing experience. Necessary
+      cookies are required to enable the basic features of this site, such as
+      providing secure log-in or adjusting your consent preferences. These
+      cookies do not store any personally identifiable data, and cannot be
+      disabled.
+    </p>
+    <ul class="pl-3 pb-3 flex flex-col gap-2" *ngIf="hasInformationToggled">
+      <li>
+        <span class="bg-gray-200 w-min pl-1 pr-1 text-sm font-bold"
+          >access_token</span
+        >
+        <span class="text-sm"
+          >: We use this cookie, to save your access token. This is needed to
+          keep you logged in.</span
+        >
+      </li>
+      <li>
+        <span class="bg-gray-200 w-min pl-1 pr-1 text-sm font-bold"
+          >cookies</span
+        >
+        <span class="text-sm"
+          >: We use this cookie, to save whether you confirmed this message or
+          not.</span
+        >
+      </li>
+    </ul>
+  </div>
+  <button
+    class="p-2 pl-4 pr-4 lg:mb-5 border-2 text-sm font-bold border-black whitespace-nowrap"
+    (click)="toggleInformation()"
+  >
+    More Information
+  </button>
+  <button
+    class="p-2 pl-4 pr-4 lg:mb-5 border-2 text-sm font-bold border-black bg-black text-white whitespace-nowrap"
+    (click)="confirm()"
+  >
+    I Understand
+  </button>
+</div>
+<div
+  *ngIf="hasCookieBanner"
+  class="block lg:hidden fixed bg-black opacity-40 w-full h-full z-10 pointer-events-none"
+></div>

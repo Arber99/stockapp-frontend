@@ -3,6 +3,7 @@ import { History, HistoryService } from 'src/app/services/history.service';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'comp-history',
@@ -12,7 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HistoryComponent implements OnInit, OnDestroy {
   constructor(
     private historyService: HistoryService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   faArrowRight = faArrowRight;
@@ -42,5 +44,9 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   limitLength() {
     return Math.min(8, history.length)
+  }
+
+  isNotHistory() {
+    return this.router.url !== '/history';
   }
 }

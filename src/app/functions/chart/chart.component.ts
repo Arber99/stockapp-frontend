@@ -23,6 +23,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   actualSubscription: Subscription = new Subscription();
   status$: Subscription = new Subscription();
 
+  date: Date = new Date(Date.now());
   chartPortfolio: number[] = [];
   stocks: any[] = [];
   status: boolean = false;

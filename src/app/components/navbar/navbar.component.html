@@ -35,7 +35,7 @@
     <li
       class="text-white dark:text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-white dark:before:bg-zinc-800 before:-translate-x-6"
     >
-      <a href="#">About</a>
+      <a [routerLink]="'/learn'">Learn</a>
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="!isAuthorized">
       <a [routerLink]="'/login'">Login</a>
