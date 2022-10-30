@@ -1,8 +1,9 @@
 <div
-  class="grid grid-cols-1 bg-indigo-400 p-12 text-white"
+  class="bg-indigo-400 p-12 text-white"
+  *ngIf="id === '1'"
 >
   <div>
-    <h2 class="font-bold text-4xl">1. What is a stock?</h2>
+    <h2 class="font-bold text-xl">1. What is a stock?</h2>
     <p class="pt-8">
       A stock is a <b>piece of a company</b>. If you own a stock, then you
       <b>own</b> a piece of that company. The more stocks you buy, the larger
@@ -29,11 +30,12 @@
   </div>
 </div>
 <div
-  class="grid grid-cols-1 bg-indigo-400 p-12 text-white"
+  class="bg-indigo-400 p-12 text-white"
+  *ngIf="id === '2'"
 >
   <div></div>
   <div>
-    <h2 class="font-bold text-4xl">2. Market Capitalization</h2>
+    <h2 class="font-bold text-xl">2. Market Capitalization</h2>
     <p class="pt-8">
       Let's say the shares of <b>Microsoft</b> are trading at <b>$300</b> and
       the shares of <b>Tesla</b> are trading at <b>$900</b>. Which company do
@@ -86,10 +88,11 @@
   </div>
 </div>
 <div
-  class="grid grid-cols-1 bg-indigo-400 p-12 text-white"
+  class="bg-indigo-400 p-12 text-white"
+  *ngIf="id === '3'"
 >
   <div>
-    <h2 class="font-bold text-4xl lg:text-7xl">3. How do I trade?</h2>
+    <h2 class="font-bold text-xl">3. How do I trade?</h2>
     <p class="pt-8">
       If you just want to trade stocks right now, then you need a
       <b>brokerage</b> account. Well, how do you get one? It's simple, just
@@ -118,10 +121,11 @@
   </div>
 </div>
 <div
-  class="grid grid-cols-1 bg-green-400 p-12 text-white"
+  class="bg-green-400 p-12 text-white"
+  *ngIf="id === '4'"
 >
   <div>
-    <h2 class="font-bold text-4xl lg:text-7xl">
+    <h2 class="font-bold text-xl">
       4. How does the stock market work?
     </h2>
     <p class="pt-8">

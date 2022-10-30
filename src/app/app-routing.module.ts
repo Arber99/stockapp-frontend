@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyPage },
   { path: 'accessibility', component: AccessibilityPage },
   { path: 'learn', component: LearnPage },
+  { path: 'learn/:id', component: LearnPage },
   { path: 'account', component: AccountPage },
 ];
 
