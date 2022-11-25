@@ -13,16 +13,6 @@
     *ngIf="currentWindowWidth > 1280; else menu"
   >
     <li>
-      <a [routerLink]="'/easylanguage'" class="text-white dark:text-zinc-800"
-        ><fa-icon
-          [icon]="faBookOpenReader"
-          aria-hidden="true"
-          class="mr-2"
-        ></fa-icon
-        >Easy Language</a
-      >
-    </li>
-    <li>
       <a [routerLink]="'/accessibility'" class="text-white dark:text-zinc-800"
         ><fa-icon
           [icon]="faCircleInfo"
@@ -35,7 +25,7 @@
     <li
       class="text-white dark:text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-white dark:before:bg-zinc-800 before:-translate-x-6"
     >
-      <a [routerLink]="'/learn'">Learn</a>
+      <a href="https://github.com/Arber99">GitHub</a>
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="!isAuthorized">
       <a [routerLink]="'/login'">Login</a>
@@ -105,16 +95,6 @@
     <a href="#" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
       ><fa-icon [icon]="faCircleInfo" aria-hidden="true" class="mr-2"></fa-icon>
       Accessibility</a
-    >
-  </li>
-  <li class="text-right">
-    <a href="#" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
-      ><fa-icon
-        [icon]="faBookOpenReader"
-        aria-hidden="true"
-        class="mr-2"
-      ></fa-icon
-      >Easy Language</a
     >
   </li>
 </ul>

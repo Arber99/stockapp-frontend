@@ -21,7 +21,6 @@ import { StockPopupComponent } from './functions/stock-popup/stock-popup.compone
 import { DatePipe } from './pipes/date.pipe';
 import { HistoryComponent } from './functions/history/history.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LearnComponent } from './components/learn/learn.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { CardMarketComponent } from './functions/card-market/card-market.component';
 import { ChartComponent } from './functions/chart/chart.component';
@@ -35,7 +34,6 @@ import { PrivacyPage } from './pages/privacy/privacy.component';
 import { AccessibilityPage } from './pages/accessibility/accessibility.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { CookieBannerComponent } from './functions/cookie-banner/cookie-banner.component';
-import { LearnPage } from './pages/learn/learn.component';
 import { AccountPage } from './pages/account/account.component';
 
 @NgModule({
@@ -57,7 +55,6 @@ import { AccountPage } from './pages/account/account.component';
     DatePipe,
     HistoryComponent,
     FooterComponent,
-    LearnComponent,
     ExploreComponent,
     CardMarketComponent,
     ChartComponent,
@@ -71,7 +68,6 @@ import { AccountPage } from './pages/account/account.component';
     TermsPage,
     PrivacyPage,
     AccessibilityPage,
-    LearnPage,
     AccountPage,
   ],
   imports: [

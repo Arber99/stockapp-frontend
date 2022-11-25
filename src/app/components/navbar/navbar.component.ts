@@ -1,9 +1,11 @@
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import {
-  faCircleInfo,
-  faBookOpenReader,
-  faBars,
-} from '@fortawesome/free-solid-svg-icons';
+  Component,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { faCircleInfo, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -12,10 +14,8 @@ import { AccountService } from 'src/app/services/account.service';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  
   constructor(private account: AccountService) {}
-  
-  faBookOpenReader = faBookOpenReader;
+
   faCircleInfo = faCircleInfo;
   faBars = faBars;
 
@@ -25,21 +25,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
   name = '';
   isAuthorized: boolean = false;
 
-  nameSubscription: Subscription = new Subscription;
-  authorizedSubscription: Subscription = new Subscription;
+  nameSubscription: Subscription = new Subscription();
+  authorizedSubscription: Subscription = new Subscription();
 
   @Input()
   background = 'bg-white';
 
   ngOnInit() {
-
     this.nameSubscription = this.account.name.subscribe((data) => {
       this.name = data;
-    })
+    });
 
-    this.authorizedSubscription = this.account.isAuthorized.subscribe((data) => {
-      this.isAuthorized = data;
-    })
+    this.authorizedSubscription = this.account.isAuthorized.subscribe(
+      (data) => {
+        this.isAuthorized = data;
+      }
+    );
 
     this.currentWindowWidth = window.innerWidth;
   }

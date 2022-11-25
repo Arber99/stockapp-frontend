@@ -11,16 +11,16 @@
           Have you ever wanted to know how to <b>invest</b>, but never had the
           time to actually learn it? This website aims to teach you the
           fundamentals of investing <b>without</b> any intention to profit off
-          of you. No books with over 100 pages, no paid courses, no ads. Just
-          going straight to the <b>point</b>.
+          of you. No books with over 100 pages, no paid courses, no ads. Start
+          trading with fake money <b>now</b>.
         </p>
       </div>
       <div class="flex flex-col md:flex-row gap-6 md:gap-8 mt-10 md:mt-14">
         <a
-          href="#"
+          [routerLink]="'/login'"
           class="bg-indigo-500 rounded-full cshadow p-3 pl-6 pr-6 text-white cshadow border border-zinc-100 w-min whitespace-nowrap"
         >
-          <span class="font-semibold">Start Learning</span>
+          <span class="font-semibold">Log In</span>
         </a>
         <a
           [routerLink]="'/signup'"
@@ -30,7 +30,9 @@
         </a>
       </div>
     </div>
-    <div class="w-[220px] xl:w-[300px] min-w-[220px] xl:min-w-[300px] min-h-[443px] xl:min-h-[603px] hidden md:block">
+    <div
+      class="w-[220px] xl:w-[300px] min-w-[220px] xl:min-w-[300px] min-h-[443px] xl:min-h-[603px] hidden md:block"
+    >
       <img src="../../../assets/iphone.webp" class="object-contain" />
     </div>
   </div>

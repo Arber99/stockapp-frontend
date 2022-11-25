@@ -6,7 +6,6 @@ import { DashboardPage } from './pages/dashboard/dashboard.component';
 import { HistoryPage } from './pages/history/history.component';
 import { HomePage } from './pages/home/home.component';
 import { ImprintPage } from './pages/imprint/imprint.component';
-import { LearnPage } from './pages/learn/learn.component';
 import { LogInPage } from './pages/log-in/log-in.component';
 import { MarketPage } from './pages/market/market.component';
 import { PrivacyPage } from './pages/privacy/privacy.component';
@@ -24,8 +23,6 @@ const routes: Routes = [
   { path: 'terms', component: TermsPage },
   { path: 'privacy', component: PrivacyPage },
   { path: 'accessibility', component: AccessibilityPage },
-  { path: 'learn', component: LearnPage },
-  { path: 'learn/:id', component: LearnPage },
   { path: 'account', component: AccountPage },
 ];
 
