@@ -111,7 +111,6 @@ export class ChartComponent implements OnInit, OnDestroy {
       if (index == 0) {
         this.path += `M${index * 28},${((max - element) / diff) * 300 - 20},`;
         this.dotted = ((max - element) / diff) * 300 - 20;
-        console.log(this.dotted);
       } else {
         this.path += `L${index * 28},${((max - element) / diff) * 300 - 20},`;
       }
@@ -133,7 +132,10 @@ export class ChartComponent implements OnInit, OnDestroy {
   line(e: any) {
     let rect = e.target.getBoundingClientRect();
     if (rect.width > 0) {
-      this.index = Math.min(this.chartPortfolio.length - 1, Math.round(((e.clientX - rect.left) / rect.width) * 25));
+      this.index = Math.min(
+        this.chartPortfolio.length - 1,
+        Math.round(((e.clientX - rect.left) / rect.width) * 25)
+      );
 
       if (this.index === this.chartPortfolio.length - 1) {
         this.pathLine = (this.index * rect.width) / 25 - 4;
