@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,12 +10,22 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss'],
 })
-export class LogInPage implements OnInit {
-  constructor(private account: AccountService, private auth: AuthService, private router: Router) {}
+export class LogInPage implements OnInit, OnDestroy {
+  constructor(
+    private account: AccountService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
+
+  $loginLoaded: Subscription = new Subscription();
+  loginLoaded = true;
 
   ngOnInit() {
-    if(!this.auth.isExpired()) {
-      this.router.navigate(['dashboard'])
+    this.$loginLoaded = this.account.loginLoaded.subscribe((data: boolean) => {
+      this.loginLoaded = data;
+    });
+    if (!this.auth.isExpired()) {
+      this.router.navigate(['dashboard']);
     }
   }
 
@@ -25,5 +36,9 @@ export class LogInPage implements OnInit {
 
   onClickSubmit() {
     this.account.logIn(this.logInForm.value);
+  }
+
+  ngOnDestroy() {
+    this.$loginLoaded.unsubscribe();
   }
 }

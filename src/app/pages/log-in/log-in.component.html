@@ -26,15 +26,31 @@
           formControlName="password"
           class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none focus:border-2 focus:border-zinc-600"
         />
-        <a [routerLink]="'/forgot-password'" class="font-bold border-b-4 block w-min whitespace-nowrap mt-2">Forgot your password?</a>
+        <a
+          [routerLink]="'/forgot-password'"
+          class="font-bold border-b-4 block w-min whitespace-nowrap mt-2"
+          >Forgot your password?</a
+        >
       </div>
-      <button
-        type="submit"
-        value="submit"
-        class="bg-white p-2 pl-3 pr-3 mt-4 font-bold text-indigo-500 w-min"
-      >
-        Login
-      </button>
+      <div class="flex flex-row gap-4 items-center align-middle">
+        <button
+          type="submit"
+          value="submit"
+          class="bg-white p-2 pl-3 pr-3 mt-4 font-bold text-indigo-500 w-min"
+          [ngClass]="loginLoaded ? '' : 'opacity-50'"
+          [disabled]="!loginLoaded"
+        >
+          Login
+        </button>
+        <div class="mt-4">
+          <mat-progress-spinner
+            mode="indeterminate"
+            color="accent"
+            [diameter]="35"
+            *ngIf="!loginLoaded"
+          ></mat-progress-spinner>
+        </div>
+      </div>
     </form>
   </div>
 </div>

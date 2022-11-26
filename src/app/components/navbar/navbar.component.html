@@ -25,19 +25,33 @@
     <li
       class="text-white dark:text-black font-bold before:content-[''] before:absolute before:w-[1px] before:h-6 before:bg-white dark:before:bg-zinc-800 before:-translate-x-6"
     >
-      <a href="https://github.com/Arber99">GitHub</a>
+      <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
+        href="https://github.com/Arber99"
+        >GitHub</a
+      >
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="!isAuthorized">
-      <a [routerLink]="'/login'">Login</a>
+      <a [ngClass]="accountLoaded ? '' : 'blur-sm'" [routerLink]="'/login'"
+        >Login</a
+      >
     </li>
     <li class="text-white font-bold" *ngIf="!isAuthorized">
-      <a [routerLink]="'/signup'" class="bg-green-400 p-2 pl-3 pr-3">Sign up</a>
+      <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
+        [routerLink]="'/signup'"
+        class="bg-green-400 p-2 pl-3 pr-3"
+        >Sign up</a
+      >
     </li>
     <li class="text-white dark:text-black font-bold" *ngIf="isAuthorized">
-      <span>Hello,&nbsp;&nbsp;{{ name }}</span>
+      <span [ngClass]="accountLoaded ? '' : 'blur-sm'"
+        >Hello,&nbsp;&nbsp;{{ name }}</span
+      >
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
       <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
         [routerLink]="'/dashboard'"
         class="text-white dark:text-black font-bold"
         >Dashboard</a
@@ -45,13 +59,18 @@
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
       <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
         [routerLink]="'/market'"
         class="text-white dark:text-black font-bold"
         >Market</a
       >
     </li>
     <li class="text-white font-bold" *ngIf="isAuthorized">
-      <a [routerLink]="'/'" (click)="logOut()" class="bg-red-400 p-2 pl-3 pr-3"
+      <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
+        [routerLink]="'/'"
+        (click)="logOut()"
+        class="bg-red-400 p-2 pl-3 pr-3"
         >Log out</a
       >
     </li>

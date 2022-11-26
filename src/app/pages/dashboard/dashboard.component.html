@@ -17,9 +17,12 @@
       </div>
     </div>
     <div>
-      <span class="text-white bg-green-400 p-1 pl-3 pr-3 font-semibold text-sm"
+      <span class="text-white bg-green-400 p-1 pl-3 pr-3 font-semibold text-sm" *ngIf="accountLoaded"
         >Cash: {{ cash | Dollar }}</span
       >
+      <span class="text-white bg-green-400 p-1 pl-3 pr-3 font-semibold text-sm blur-sm" *ngIf="!accountLoaded"
+      >Cash: Loading</span
+    >
     </div>
   </div>
   <div class="grid grid-cols-12 lg:gap-12">

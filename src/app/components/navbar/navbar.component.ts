@@ -24,9 +24,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   name = '';
   isAuthorized: boolean = false;
+  accountLoaded: boolean = true;
 
   nameSubscription: Subscription = new Subscription();
   authorizedSubscription: Subscription = new Subscription();
+
+  $accountLoaded: Subscription = new Subscription();
 
   @Input()
   background = 'bg-white';
@@ -42,12 +45,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.$accountLoaded = this.account.accountLoaded.subscribe((data: boolean) => {
+      this.accountLoaded = data;
+    })
+
     this.currentWindowWidth = window.innerWidth;
   }
 
   ngOnDestroy(): void {
     this.nameSubscription.unsubscribe();
     this.authorizedSubscription.unsubscribe();
+    this.$accountLoaded.unsubscribe();
   }
 
   @HostListener('window:resize')

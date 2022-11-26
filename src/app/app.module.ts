@@ -35,6 +35,7 @@ import { AccessibilityPage } from './pages/accessibility/accessibility.component
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { CookieBannerComponent } from './functions/cookie-banner/cookie-banner.component';
 import { AccountPage } from './pages/account/account.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { AccountPage } from './pages/account/account.component';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

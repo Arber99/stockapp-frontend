@@ -42,6 +42,8 @@ export class DashboardPage implements OnInit, OnDestroy {
   percentageSubscription: Subscription = new Subscription();
   networthSubscription: Subscription = new Subscription();
 
+  $accountLoaded: Subscription = new Subscription();
+
   stocks: any = [];
   cash: number = 0;
   networth: number = 0;
@@ -57,6 +59,8 @@ export class DashboardPage implements OnInit, OnDestroy {
   };
   percentage: number = 0;
   popup: string = '';
+
+  accountLoaded: boolean = true;
 
   ngOnInit(): void {
     if (this.auth.isExpired()) {
@@ -90,6 +94,10 @@ export class DashboardPage implements OnInit, OnDestroy {
         this.calculatePortfolio();
       },
     });
+
+    this.$accountLoaded = this.account.accountLoaded.subscribe((data: boolean) => {
+      this.accountLoaded = data;
+    })
   }
 
   ngOnDestroy(): void {
@@ -99,6 +107,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.marketList.unsubscribe();
     this.accountCash.unsubscribe();
     this.accountStocks.unsubscribe();
+    this.$accountLoaded.unsubscribe();
   }
 
   calculatePortfolio() {

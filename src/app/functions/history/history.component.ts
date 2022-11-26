@@ -21,8 +21,11 @@ export class HistoryComponent implements OnInit, OnDestroy {
   faArrowLeft = faArrowLeft;
 
   @Input()
-  history: History[] = [];
   historyData: Subscription = new Subscription();
+  $historyLoaded: Subscription = new Subscription();
+
+  history: History[] = [];
+  historyLoaded: boolean = true;
 
   ngOnInit() {
     if (this.auth.isExpired()) {
@@ -36,6 +39,10 @@ export class HistoryComponent implements OnInit, OnDestroy {
         this.history = data;
       }
     );
+
+    this.$historyLoaded = this.historyService.historyLoaded.subscribe((data: boolean) => {
+      this.historyLoaded = data;
+    })
   }
 
   ngOnDestroy() {

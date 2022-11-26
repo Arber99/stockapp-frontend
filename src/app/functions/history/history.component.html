@@ -1,11 +1,19 @@
 <div class="cshadow h-min">
   <h3 class="text-xl font-bold p-6">History</h3>
+  <div class="w-full flex flex-row justify-center pb-8 pt-4" *ngIf="!historyLoaded">
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="accent"
+      [strokeWidth]="6"
+      [diameter]="50"
+    ></mat-progress-spinner>
+  </div>
   <span
-    *ngIf="history.length === 0"
+    *ngIf="history.length === 0 && historyLoaded"
     class="italic text-zinc-400 ml-6 mb-6 block"
     >No history available</span
   >
-  <ul class="flex flex-col">
+  <ul class="flex flex-col" *ngIf="historyLoaded">
     <li
       *ngFor="let entry of history.reverse().slice(0, limitLength())"
       class="flex flex-row justify-between gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300"
@@ -38,7 +46,10 @@
       >
     </li>
   </ul>
-  <div class="mt-4 pb-4 text-center" *ngIf="history.length !== 0 && isNotHistory()">
+  <div
+    class="mt-4 pb-4 text-center"
+    *ngIf="history.length !== 0 && isNotHistory()"
+  >
     <a
       [routerLink]="'/history'"
       class="text-zinc-400 font-bold text-sm text-center"

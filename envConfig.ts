@@ -1,4 +1,4 @@
 export const envConfig = {
     production: false,
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'https://stockapp-api.vercel.app/'
   };

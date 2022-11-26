@@ -17,7 +17,15 @@
         </div>
       </div>
       <div class="cshadow">
-        <ul class="flex flex-col">
+        <div class="w-full flex flex-row justify-center pb-8 pt-8" *ngIf="!marketLoaded">
+          <mat-progress-spinner
+            mode="indeterminate"
+            color="accent"
+            [strokeWidth]="6"
+            [diameter]="50"
+          ></mat-progress-spinner>
+        </div>
+        <ul class="flex flex-col" *ngIf="marketLoaded">
           <li>
             <div
               class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row justify-between items-center bg-white"
@@ -50,6 +58,7 @@
         </ul>
         <div
           class="p-5 lg:pl-6 lg:pr-6 lg:pt-4 lg:pb-4 flex flex-row items-center"
+          *ngIf="marketLoaded"
         >
           <label class="text-sm font-bold">Page</label>
           <ul class="ml-8 flex flex-row gap-4">

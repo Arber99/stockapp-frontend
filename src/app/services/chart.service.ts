@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,14 +22,19 @@ export class ChartService {
     });
     this.http
       .get(envConfig.baseUrl + 'chart', { headers: headers })
+      .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {
-          this.chart.next(data);
+          if (data.length > 0) {
+            this.chart.next(data);
+          }
         },
         error: (error) => {
-          console.warn('Your user token has expired, please login again.');
+          console.warn('Could not load chart data.');
           this.chart.error(error);
-          this.auth.flushToken();
+          if (this.auth.isExpired()) {
+            this.auth.flushToken();
+          }
         },
       });
   }

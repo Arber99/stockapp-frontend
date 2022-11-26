@@ -26,6 +26,7 @@ export class MarketPage implements OnInit, OnDestroy {
   ) {}
 
   isTrade: boolean = false;
+  marketLoaded: boolean = true;
   trade: any;
   page: number = 0;
   pages: number = 0;
@@ -35,6 +36,7 @@ export class MarketPage implements OnInit, OnDestroy {
   found: Market = [];
   marketData: Subscription = new Subscription();
   marketList: Subscription = new Subscription();
+  $marketLoaded: Subscription = new Subscription();
 
   ngOnInit(): void {
     if (this.auth.isExpired()) {
@@ -48,6 +50,9 @@ export class MarketPage implements OnInit, OnDestroy {
 
     //Subscriptions
     this.marketData = this.marketService.getMarketData();
+    this.$marketLoaded = this.marketService.marketLoaded.subscribe((data: boolean) => {
+      this.marketLoaded = data;
+    })
     this.marketList = this.marketService.market.subscribe({
       next: (data: any) => {
         this.market = data.sort((a: any, b: any) =>
@@ -61,6 +66,7 @@ export class MarketPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.marketData.unsubscribe();
     this.marketList.unsubscribe();
+    this.$marketLoaded.unsubscribe();
   }
 
   setTrade(market: any) {
