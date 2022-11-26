@@ -116,4 +116,9 @@
       Accessibility</a
     >
   </li>
+  <li *ngIf="isAuthorized">
+    <a [routerLink]="'/'" (click)="logOut()" class="text-red-500 font-bold"
+      >Log out</a
+    >
+  </li>
 </ul>
