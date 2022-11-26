@@ -91,23 +91,23 @@
   }} border-b border-white dark:border-zinc-400 mt-[72px] max-h-[50vh] w-full font-semibold text-black"
   *ngIf="isMenu"
 >
-  <li>
-    <button
-      [routerLink]="'/signup'"
-      class="text-white dark:text-zinc-800"
-      *ngIf="!isAuthorized"
-    >
+  <li *ngIf="!isAuthorized">
+    <button [routerLink]="'/login'" class="text-white dark:text-zinc-800">
+      <span class="font-bold">Log In</span>
+    </button>
+  </li>
+  <li *ngIf="!isAuthorized">
+    <button [routerLink]="'/signup'" class="text-white dark:text-zinc-800">
       <span class="font-bold">Sign Up</span>
     </button>
   </li>
-  <li>
-    <button
-      [routerLink]="'/login'"
-      class="text-white dark:text-zinc-800"
-      *ngIf="!isAuthorized"
+  <li class="text-white font-bold" *ngIf="isAuthorized">
+    <a [routerLink]="'/dashboard'" class="text-white dark:text-zinc-800"
+      >Dashboard</a
     >
-      <span class="font-bold">Log In</span>
-    </button>
+  </li>
+  <li class="text-white font-bold" *ngIf="isAuthorized">
+    <a [routerLink]="'/market'" class="text-white dark:text-zinc-800">Market</a>
   </li>
   <li class="text-white dark:text-zinc-800">About</li>
   <li class="text-right">
