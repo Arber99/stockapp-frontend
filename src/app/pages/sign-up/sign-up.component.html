@@ -1,9 +1,7 @@
-<comp-navbar background="bg-green-400"></comp-navbar>
-<div
-  class="grid grid-cols-1 xl:grid-cols-2 pl-12 pr-12 xl:gap-24 xl:pr-48 xl:pl-48 xl:justify-between min-h-[calc(max(500px,_100vh))] bg-green-400"
->
-  <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-48 pb-8 text-white">
-    <h1 class="font-bold text-4xl pb-2 xl:text-7xl">
+<comp-navbar class="dark"></comp-navbar>
+<div class="flex pl-4 pr-4 justify-center min-h-[calc(max(500px,_100vh))]">
+  <div class="flex flex-col gap-4 mb-12 xl:pt-0 mt-32 xl:mt-48 pl-8 pr-8 pb-8">
+    <h1 class="font-bold text-4xl pb-2 max-w-[369px]">
       Start Trading With Fake Money
     </h1>
     <form
@@ -17,7 +15,7 @@
           type="text"
           name="firstName"
           formControlName="firstName"
-          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none focus:border-2 focus:border-zinc-600"
+          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none border-zinc-300 border-2 focus:border-zinc-600"
         />
       </div>
       <div>
@@ -26,7 +24,7 @@
           type="email"
           name="email"
           formControlName="email"
-          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none focus:border-2 focus:border-zinc-600"
+          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none border-zinc-300 border-2 focus:border-zinc-600"
         />
       </div>
       <div>
@@ -35,14 +33,18 @@
           type="password"
           name="password"
           formControlName="password"
-          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none focus:border-2 focus:border-zinc-600"
+          class="w-full h-10 mt-1 text-zinc-900 pl-2 font-bold block max-w-[369px] focus:outline-none border-zinc-300 border-2 focus:border-zinc-600"
         />
-        <a [routerLink]="'/login'" class="font-bold border-b-4 block w-min whitespace-nowrap mt-2">Already have an account?</a>
+        <a
+          [routerLink]="'/login'"
+          class="font-bold border-b-4 block w-min whitespace-nowrap mt-2 border-black"
+          >Already have an account?</a
+        >
       </div>
       <button
         type="submit"
         value="submit"
-        class="bg-white p-2 pl-3 pr-3 mt-4 font-bold text-green-500 w-min"
+        class="text-white p-2 pl-3 pr-3 mt-4 font-bold bg-black w-min"
       >
         Register
       </button>
