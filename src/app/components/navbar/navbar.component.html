@@ -109,9 +109,11 @@
   <li class="text-white font-bold" *ngIf="isAuthorized">
     <a [routerLink]="'/market'" class="text-white dark:text-zinc-800">Market</a>
   </li>
-  <li class="text-white dark:text-zinc-800">About</li>
+  <li class="text-white dark:text-zinc-800">
+    <a href="https://github.com/Arber99">GitHub</a>
+  </li>
   <li class="text-right">
-    <a href="#" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
+    <a [routerLink]="'/accessibility'" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
       ><fa-icon [icon]="faCircleInfo" aria-hidden="true" class="mr-2"></fa-icon>
       Accessibility</a
     >
