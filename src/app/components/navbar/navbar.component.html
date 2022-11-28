@@ -68,6 +68,14 @@
     <li class="text-white font-bold" *ngIf="isAuthorized">
       <a
         [ngClass]="accountLoaded ? '' : 'blur-sm'"
+        [routerLink]="'/account'"
+        class="text-white dark:text-black font-bold"
+        >My Account</a
+      >
+    </li>
+    <li class="text-white font-bold" *ngIf="isAuthorized">
+      <a
+        [ngClass]="accountLoaded ? '' : 'blur-sm'"
         [routerLink]="'/'"
         (click)="logOut()"
         class="bg-red-400 p-2 pl-3 pr-3"
@@ -106,11 +114,14 @@
       >Dashboard</a
     >
   </li>
-  <li class="text-white font-bold" *ngIf="isAuthorized">
+  <li class="font-bold" *ngIf="isAuthorized">
     <a [routerLink]="'/market'" class="text-white dark:text-zinc-800">Market</a>
   </li>
   <li class="text-white dark:text-zinc-800">
     <a href="https://github.com/Arber99">GitHub</a>
+  </li>
+  <li class="text-white dark:text-zinc-800 font-bold" *ngIf="isAuthorized">
+    <a [routerLink]="'/account'">My Account</a>
   </li>
   <li class="text-right">
     <a [routerLink]="'/accessibility'" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
