@@ -117,11 +117,11 @@
   <li class="font-bold" *ngIf="isAuthorized">
     <a [routerLink]="'/market'" class="text-white dark:text-zinc-800">Market</a>
   </li>
-  <li class="text-white dark:text-zinc-800">
-    <a href="https://github.com/Arber99">GitHub</a>
-  </li>
   <li class="text-white dark:text-zinc-800 font-bold" *ngIf="isAuthorized">
     <a [routerLink]="'/account'">My Account</a>
+  </li>
+  <li class="text-white dark:text-zinc-800">
+    <a href="https://github.com/Arber99">GitHub</a>
   </li>
   <li class="text-right">
     <a [routerLink]="'/accessibility'" class="text-white dark:text-zinc-800" (click)="onMenu(false)"
