@@ -143,8 +143,6 @@ export class ChartComponent implements OnInit, OnDestroy {
         this.pathLine = Math.max(2, (this.index * 704) / 25 - 1);
       }
 
-      console.log(rect.width);
-
       this.setPercentage(
         this.chartPortfolio[0],
         this.chartPortfolio[this.index]
