@@ -36,21 +36,30 @@ export class HistoryComponent implements OnInit, OnDestroy {
     //Subscriptions
     this.historyData = this.historyService.history.subscribe(
       (data: History[]) => {
-        this.history = data;
+        this.history = data.sort((a, b) => {
+          if (a['createdAt'] > b['createdAt']) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
       }
     );
 
-    this.$historyLoaded = this.historyService.historyLoaded.subscribe((data: boolean) => {
-      this.historyLoaded = data;
-    })
+    this.$historyLoaded = this.historyService.historyLoaded.subscribe(
+      (data: boolean) => {
+        this.historyLoaded = data;
+      }
+    );
   }
 
   ngOnDestroy() {
     this.historyData.unsubscribe();
+    this.$historyLoaded.unsubscribe();
   }
 
   limitLength() {
-    return Math.min(8, history.length)
+    return Math.min(8, history.length);
   }
 
   isNotHistory() {
