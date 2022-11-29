@@ -15,7 +15,7 @@
   >
   <ul class="flex flex-col" *ngIf="historyLoaded">
     <li
-      *ngFor="let entry of history.reverse().slice(0, limitLength())"
+      *ngFor="let entry of history.slice(0, limitLength())"
       class="flex flex-row justify-between gap-3 p-4 items-start hover:bg-zinc-50 transition-colors duration-300"
     >
       <div class="flex flex-row items-start gap-6">
