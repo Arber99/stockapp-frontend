@@ -28,6 +28,9 @@ export class HistoryComponent implements OnInit, OnDestroy {
   historyLoaded: boolean = true;
   limit: number = 0;
 
+  @Input()
+  isLimit: boolean = true;
+
   ngOnInit() {
     if (this.auth.isExpired()) {
       return;
