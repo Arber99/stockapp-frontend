@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { envConfig } from 'envConfig';
+import { timeout } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -20,6 +21,7 @@ export class StockService {
         { ticker: ticker, amount: amount },
         { headers: headers }
       )
+      .pipe(timeout(15000))
       .subscribe((data) => {
       });
   }
@@ -35,6 +37,7 @@ export class StockService {
         { ticker: ticker, amount: amount },
         { headers: headers }
       )
+      .pipe(timeout(15000))
       .subscribe((data) => {
       });
   }

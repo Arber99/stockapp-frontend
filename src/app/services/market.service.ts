@@ -45,6 +45,7 @@ export class MarketService {
     this.marketLoaded.next(false);
     this.http
       .get(envConfig.baseUrl + 'market', { headers: headers })
+      .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {
           this.market.next(data.marketData);
