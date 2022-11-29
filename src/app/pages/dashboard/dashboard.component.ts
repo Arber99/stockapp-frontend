@@ -137,7 +137,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     });
     this.stocks = portfolio;
     this.chartService.actual.next(portfolioValue);
-    this.chartService.networth.next(portfolioValue + this.cash);
+    this.chartService.networth.next(portfolioValue);
 
     this.portfolioService.portfolio.next({
       stocks: this.stocks,

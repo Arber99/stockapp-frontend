@@ -165,7 +165,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   setPercentage(start: number, end: number) {
     if (start && end) {
       this.chartService.percentage.next((end / start - 1) * 100);
-      this.chartService.networth.next(end + this.cash);
+      this.chartService.networth.next(end);
     }
   }
 }
