@@ -26,6 +26,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   history: History[] = [];
   historyLoaded: boolean = true;
+  limit: number = 0;
 
   ngOnInit() {
     if (this.auth.isExpired()) {
@@ -43,6 +44,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
             return -1;
           }
         });
+        this.limit = Math.min(8, this.history.length);
       }
     );
 
@@ -56,10 +58,6 @@ export class HistoryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.historyData.unsubscribe();
     this.$historyLoaded.unsubscribe();
-  }
-
-  limitLength() {
-    return Math.min(8, history.length);
   }
 
   isNotHistory() {
