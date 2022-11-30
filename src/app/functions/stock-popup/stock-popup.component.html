@@ -60,7 +60,7 @@
       </div>
       <div *ngIf="status" class="flex flex-col">
         <button
-          *ngIf="mode === 'buy'"
+          *ngIf="mode === 'buy' && buyLoaded"
           class="mt-4 bg-green-400 text-sm text-white font-bold p-2"
           [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400' "
           (click)="buyStock(stock.ticker, amount)"
@@ -68,7 +68,7 @@
           Buy
         </button>
         <button
-          *ngIf="mode === 'sell'"
+          *ngIf="mode === 'sell' && sellLoaded"
           class="mt-4 bg-red-400 text-sm text-white font-bold p-2"
           (click)="sellStock(stock.ticker, amount)"
         >
