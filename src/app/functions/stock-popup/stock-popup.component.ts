@@ -41,12 +41,19 @@ export class StockPopupComponent implements OnInit, OnDestroy {
   spread: boolean = false;
   buyLoaded: boolean = true;
   sellLoaded: boolean = true;
+  success: boolean = false;
 
   ngOnInit() {
     this.buyLoaded$ = this.stockService.buyLoaded.subscribe((data: boolean) => {
+      if(this.buyLoaded === false && data === true) {
+        this.success = true;
+      }
       this.buyLoaded = data;
     })
     this.sellLoaded$ = this.stockService.sellLoaded.subscribe((data: boolean) => {
+      if(this.sellLoaded === false && data === true) {
+        this.success = true;
+      }
       this.sellLoaded = data;
     })
     this.status$ = this.marketService.status.subscribe((data: boolean) => {

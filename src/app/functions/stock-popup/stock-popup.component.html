@@ -62,7 +62,7 @@
         <button
           *ngIf="mode === 'buy' && buyLoaded"
           class="mt-4 bg-green-400 text-sm text-white font-bold p-2"
-          [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400' "
+          [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400'"
           (click)="buyStock(stock.ticker, amount)"
         >
           Buy
@@ -74,9 +74,32 @@
         >
           Sell
         </button>
-        <span class="text-center text-orange-600 text-xs mt-1" *ngIf="spread"
-        ><fa-icon [icon]="faTriangleExclamation"></fa-icon> Bid/Ask spread is {{ ((this.stock.ap - this.stock.bp) / this.stock.ap) * 100 | Percent }}</span
-      >
+        <button
+          *ngIf="mode === 'buy' && !buyLoaded"
+          class="mt-4 bg-gray-500 text-sm text-white font-bold p-2 cursor-wait"
+        >
+          Processing...
+        </button>
+        <button
+          *ngIf="mode === 'sell' && !sellLoaded"
+          class="mt-4 bg-gray-500 text-sm text-white font-bold p-2 cursor-wait"
+        >
+          Processing...
+        </button>
+        <span
+          class="text-center text-orange-600 text-xs mt-1"
+          *ngIf="spread && !success"
+          ><fa-icon [icon]="faTriangleExclamation"></fa-icon> Bid/Ask spread is
+          {{
+            ((this.stock.ap - this.stock.bp) / this.stock.ap) * 100 | Percent
+          }}</span
+        >
+        <span
+          class="text-center text-green-500 font-semibold text-xs mt-1 relative after:absolute after:bottom-0 after:-mb-1 after:left-0 after:h-[3px] after:bg-green-500"
+          [ngClass]="[!success ? 'success no-success' : 'success']"
+          *ngIf="success"
+          >Trade successful ✓</span
+        >
       </div>
       <div disabled *ngIf="!status" class="flex flex-col">
         <button

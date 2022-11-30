@@ -1,3 +1,34 @@
 .shadowf {
   box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.12);
 }
+
+.success {
+  animation: 5s ease-out fadeOut;
+  animation-fill-mode: forwards;
+  &::after {
+    width: 100%;
+    animation: 8s ease-out successBar;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes successBar {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes fadeOut {
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
