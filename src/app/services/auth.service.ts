@@ -30,6 +30,7 @@ export class AuthService {
         return false;
       }
     }
+    this.flushToken();
     return true;
   }
 }

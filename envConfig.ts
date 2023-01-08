@@ -1,4 +1,4 @@
 export const envConfig = {
     production: false,
-    baseUrl: 'https://stockapp-8lclzrnoe-arber99.vercel.app/'
+    baseUrl: 'http://18.197.106.62:3000/'
   };
