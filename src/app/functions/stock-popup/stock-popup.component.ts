@@ -30,7 +30,7 @@ export class StockPopupComponent implements OnInit, OnDestroy {
     ap: 0,
     total: 0,
   };
-  amount: number = 0;
+  amount?: number;
   mode: 'sell' | 'buy' = 'buy';
   status: boolean = false;
   market$: Subscription = new Subscription();

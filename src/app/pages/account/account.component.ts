@@ -29,6 +29,9 @@ export class AccountPage implements OnInit {
         this.email = data;
       });
     }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnDestroy() {

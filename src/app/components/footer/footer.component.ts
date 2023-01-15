@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'comp-footer',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private account: AccountService) { }
+
+  isAuthorized: boolean = false;
+  authorizedSubscription: Subscription = new Subscription();
 
   ngOnInit(): void {
+    this.authorizedSubscription = this.account.isAuthorized.subscribe(
+      (data: boolean) => {
+        this.isAuthorized = data;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.authorizedSubscription.unsubscribe();
   }
 
 }

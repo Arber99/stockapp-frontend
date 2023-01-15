@@ -32,7 +32,7 @@
       <li>
         <a href="https://github.com/Arber99">GitHub</a>
       </li>
-      <li>
+      <li *ngIf="isAuthorized">
         <a [routerLink]="'/account'">My Account</a>
       </li>
     </ul>

@@ -19,8 +19,7 @@ export class MarketService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
-    return interval(60000).subscribe(() => {
-      this.http
+    return this.http
         .get(envConfig.baseUrl + 'market', { headers: headers })
         .pipe(timeout(15000))
         .subscribe({
@@ -34,7 +33,6 @@ export class MarketService {
             }
           },
         });
-    });
   }
 
   initMarketData() {

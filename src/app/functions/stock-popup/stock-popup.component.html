@@ -34,7 +34,6 @@
         <span class="text-sm w-zinc-600">Amount</span>
         <input
           class="w-20 p-2 text-sm text-right text-zinc-600 bg-zinc-100 rounded-sm outline-none"
-          placeholder="0"
           type="text"
           [(ngModel)]="amount"
           maxlength="6"
@@ -52,10 +51,10 @@
       <div class="flex flex-row w-full justify-between items-center">
         <span class="text-sm w-zinc-600">Total</span>
         <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'sell'">{{
-          stock.bp * amount | Dollar
+          (amount ? stock.ap * amount : stock.ap) | Dollar
         }}</span>
         <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'buy'">{{
-          stock.ap * amount | Dollar
+          (amount ? stock.ap * amount : stock.ap) | Dollar
         }}</span>
       </div>
       <div *ngIf="status" class="flex flex-col">
@@ -63,14 +62,14 @@
           *ngIf="mode === 'buy' && buyLoaded"
           class="mt-4 bg-green-400 text-sm text-white font-bold p-2"
           [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400'"
-          (click)="buyStock(stock.ticker, amount)"
+          (click)="buyStock(stock.ticker, (amount ? amount : 0))"
         >
           Buy
         </button>
         <button
           *ngIf="mode === 'sell' && sellLoaded"
           class="mt-4 bg-red-400 text-sm text-white font-bold p-2"
-          (click)="sellStock(stock.ticker, amount)"
+          (click)="sellStock(stock.ticker, (amount ? amount : 0))"
         >
           Sell
         </button>
