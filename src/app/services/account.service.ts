@@ -60,7 +60,6 @@ export class AccountService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
-    this.accountLoaded.next(false);
     this.http
       .get(envConfig.baseUrl + 'users/me', { headers: headers })
       .pipe(timeout(15000))
