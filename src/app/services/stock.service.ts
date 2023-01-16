@@ -26,9 +26,14 @@ export class StockService {
         { headers: headers }
       )
       .pipe(timeout(15000))
-      .subscribe((data) => {
-        this.buyLoaded.next(true);
-      });
+      .subscribe(
+        (data) => {
+          this.buyLoaded.next(true);
+        },
+        (error) => {
+          this.buyLoaded.next(true);
+        }
+      );
   }
 
   sellStock(ticker: string, amount: number) {
@@ -44,8 +49,13 @@ export class StockService {
         { headers: headers }
       )
       .pipe(timeout(15000))
-      .subscribe((data) => {
-        this.sellLoaded.next(true);
-      });
+      .subscribe(
+        (data) => {
+          this.sellLoaded.next(true);
+        },
+        (error) => {
+          this.sellLoaded.next(true);
+        }
+      );
   }
 }
