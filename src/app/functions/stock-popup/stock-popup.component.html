@@ -51,7 +51,7 @@
       <div class="flex flex-row w-full justify-between items-center">
         <span class="text-sm w-zinc-600">Total</span>
         <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'sell'">{{
-          (amount ? stock.ap * amount : stock.ap) | Dollar
+          (amount ? stock.bp * amount : stock.bp) | Dollar
         }}</span>
         <span class="text-sm w-zinc-600 font-bold" *ngIf="mode === 'buy'">{{
           (amount ? stock.ap * amount : stock.ap) | Dollar
