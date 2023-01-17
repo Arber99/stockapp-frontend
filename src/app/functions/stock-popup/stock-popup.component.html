@@ -60,15 +60,17 @@
       <div *ngIf="status" class="flex flex-col">
         <button
           *ngIf="mode === 'buy' && buyLoaded"
-          class="mt-4 bg-green-400 text-sm text-white font-bold p-2"
+          class="mt-4 bg-green-400 text-sm text-white font-bold p-2 disabled:bg-gray-400"
           [ngClass]="spread ? 'bg-orange-400' : 'bg-green-400'"
+          [disabled]="!this.checkNum(this.toInt(amount))"
           (click)="buyStock(stock.ticker, (amount ? amount : 0))"
         >
           Buy
         </button>
         <button
           *ngIf="mode === 'sell' && sellLoaded"
-          class="mt-4 bg-red-400 text-sm text-white font-bold p-2"
+          class="mt-4 bg-red-400 text-sm text-white font-bold p-2 disabled:bg-gray-400"
+          [disabled]="!this.checkNum(this.toInt(amount))"
           (click)="sellStock(stock.ticker, (amount ? amount : 0))"
         >
           Sell

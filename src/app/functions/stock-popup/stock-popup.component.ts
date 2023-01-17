@@ -45,20 +45,22 @@ export class StockPopupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.buyLoaded$ = this.stockService.buyLoaded.subscribe((data: boolean) => {
-      if(this.buyLoaded === false && data === true) {
+      if (this.buyLoaded === false && data === true) {
         this.success = true;
       }
       this.buyLoaded = data;
-    })
-    this.sellLoaded$ = this.stockService.sellLoaded.subscribe((data: boolean) => {
-      if(this.sellLoaded === false && data === true) {
-        this.success = true;
+    });
+    this.sellLoaded$ = this.stockService.sellLoaded.subscribe(
+      (data: boolean) => {
+        if (this.sellLoaded === false && data === true) {
+          this.success = true;
+        }
+        this.sellLoaded = data;
       }
-      this.sellLoaded = data;
-    })
+    );
     this.status$ = this.marketService.status.subscribe((data: boolean) => {
       this.status = data;
-    })
+    });
     this.market$ = this.marketService.market.subscribe((data) => {
       this.stock.bp = data.find(
         (element: any) => element.ticker === this.stock.ticker.toString()
@@ -67,11 +69,11 @@ export class StockPopupComponent implements OnInit, OnDestroy {
         (element: any) => element.ticker === this.stock.ticker.toString()
       )?.ap;
 
-      if((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
+      if ((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
         this.spread = true;
       }
     });
-    if((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
+    if ((this.stock.ap - this.stock.bp) / this.stock.ap > 0.03) {
       this.spread = true;
     }
   }
@@ -88,14 +90,25 @@ export class StockPopupComponent implements OnInit, OnDestroy {
   }
 
   buyStock(ticker: string, amount: number) {
-    if (Number.isInteger(parseInt(amount.toString()))) {
+    if (this.checkNum(this.toInt(amount))) {
       this.stockService.buyStock(ticker, parseInt(amount.toString()));
     }
   }
 
   sellStock(ticker: string, amount: number) {
-    if (Number.isInteger(parseInt(amount.toString()))) {
+    if (this.checkNum(this.toInt(amount))) {
       this.stockService.sellStock(ticker, parseInt(amount.toString()));
     }
+  }
+
+  checkNum(value: number) {
+    return Number.isInteger(value) && value > 0;
+  }
+
+  toInt(value: number | string | undefined) {
+    if(value == undefined) {
+      return 0;
+    }
+    return parseInt(value.toString());
   }
 }
