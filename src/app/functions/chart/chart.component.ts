@@ -109,10 +109,10 @@ export class ChartComponent implements OnInit, OnDestroy {
 
     this.chartPortfolio.forEach((element, index) => {
       if (index == 0) {
-        this.path += `M${index * 28},${((max - element) / diff) * 300 - 20},`;
+        this.path += `M${index * 32},${((max - element) / diff) * 300 - 20},`;
         this.dotted = ((max - element) / diff) * 300 - 20;
       } else {
-        this.path += `L${index * 28},${((max - element) / diff) * 300 - 20},`;
+        this.path += `L${index * 32},${((max - element) / diff) * 300 - 20},`;
       }
     });
 
@@ -134,13 +134,13 @@ export class ChartComponent implements OnInit, OnDestroy {
     if (rect.width > 0) {
       this.index = Math.min(
         this.chartPortfolio.length - 1,
-        Math.round(((e.clientX - rect.left) / rect.width) * 25)
+        Math.round(((e.clientX - rect.left) / rect.width) * 22)
       );
 
       if (this.index === this.chartPortfolio.length - 1) {
-        this.pathLine = (this.index * 704) / 25 - 4;
+        this.pathLine = (this.index * 704) / 22 - 4;
       } else {
-        this.pathLine = Math.max(2, (this.index * 704) / 25 - 1);
+        this.pathLine = Math.max(2, (this.index * 704) / 22 - 1);
       }
 
       this.setPercentage(
