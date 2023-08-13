@@ -48,7 +48,7 @@ export class AccountService {
         error: (error) => {
           this.loginLoaded.next(true);
           this.loginFailed.next(true);
-        }
+        },
       });
   }
 
@@ -81,10 +81,8 @@ export class AccountService {
         },
         error: (error) => {
           console.warn('Could not get account data');
-          if (this.auth.isExpired()) {
-            this.auth.flushToken();
-          }
 
+          this.auth.flushToken();
           this.accountLoaded.next(true);
         },
       });
@@ -104,9 +102,8 @@ export class AccountService {
         },
         error: () => {
           console.warn('Could not load stock data.');
-          if (this.auth.isExpired()) {
-            this.auth.flushToken();
-          }
+
+          this.auth.flushToken();
         },
       });
   }

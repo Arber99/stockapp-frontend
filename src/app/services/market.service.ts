@@ -21,19 +21,18 @@ export class MarketService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     return this.http
-        .get(environment.api + 'market', { headers: headers })
-        .pipe(timeout(15000))
-        .subscribe({
-          next: (data: any) => {
-            this.market.next(data.marketData);
-          },
-          error: (error) => {
-            console.warn('Could not load market data.');
-            if (this.auth.isExpired()) {
-              this.auth.flushToken();
-            }
-          },
-        });
+      .get(environment.api + 'market', { headers: headers })
+      .pipe(timeout(15000))
+      .subscribe({
+        next: (data: any) => {
+          this.market.next(data.marketData);
+        },
+        error: (error) => {
+          console.warn('Could not load market data.');
+
+          this.auth.flushToken();
+        },
+      });
   }
 
   initMarketData() {
@@ -53,9 +52,8 @@ export class MarketService {
         },
         error: (error) => {
           console.warn('Could not load market data.');
-          if (this.auth.isExpired()) {
-            this.auth.flushToken();
-          }
+
+          this.auth.flushToken();
           this.marketLoaded.next(true);
         },
       });
