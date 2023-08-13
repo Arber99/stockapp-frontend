@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { envConfig } from 'envConfig';
 import { BehaviorSubject, timeout } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class StockService {
     this.buyLoaded.next(false);
     this.http
       .post(
-        envConfig.baseUrl + 'stocks/buy',
+        environment.api + 'stocks/buy',
         { ticker: ticker, amount: amount },
         { headers: headers }
       )
@@ -44,7 +45,7 @@ export class StockService {
     this.sellLoaded.next(false);
     this.http
       .post(
-        envConfig.baseUrl + 'stocks/sell',
+        environment.api + 'stocks/sell',
         { ticker: ticker, amount: amount },
         { headers: headers }
       )

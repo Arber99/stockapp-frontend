@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
 import { BehaviorSubject, Subject, timeout } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export type History = {
   amount: number;
@@ -29,7 +30,7 @@ export class HistoryService {
     });
     this.historyLoaded.next(false);
     this.http
-      .get(envConfig.baseUrl + 'history', { headers: headers })
+      .get(environment.api + 'history', { headers: headers })
       .pipe(timeout(15000))
       .subscribe((data) => {
         this.history.next(data);

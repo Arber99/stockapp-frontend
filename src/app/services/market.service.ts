@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Subject, timeout } from 'rxjs';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class MarketService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     return this.http
-        .get(envConfig.baseUrl + 'market', { headers: headers })
+        .get(environment.api + 'market', { headers: headers })
         .pipe(timeout(15000))
         .subscribe({
           next: (data: any) => {
@@ -42,7 +43,7 @@ export class MarketService {
     });
     this.marketLoaded.next(false);
     this.http
-      .get(envConfig.baseUrl + 'market', { headers: headers })
+      .get(environment.api + 'market', { headers: headers })
       .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {

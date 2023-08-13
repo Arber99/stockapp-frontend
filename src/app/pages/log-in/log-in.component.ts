@@ -18,11 +18,16 @@ export class LogInPage implements OnInit, OnDestroy {
   ) {}
 
   $loginLoaded: Subscription = new Subscription();
+  $loginFailed: Subscription = new Subscription();
   loginLoaded = true;
+  loginFailed = false;
 
   ngOnInit() {
     this.$loginLoaded = this.account.loginLoaded.subscribe((data: boolean) => {
       this.loginLoaded = data;
+    });
+    this.$loginLoaded = this.account.loginFailed.subscribe((data: boolean) => {
+      this.loginFailed = data;
     });
     if (!this.auth.isExpired()) {
       this.router.navigate(['dashboard']);
@@ -34,8 +39,9 @@ export class LogInPage implements OnInit, OnDestroy {
     password: new FormControl(),
   });
 
-  onClickSubmit() {
-    this.account.logIn(this.logInForm.value);
+  async onClickSubmit() {
+    this.loginFailed = false;
+    await this.account.logIn(this.logInForm.value);
   }
 
   ngOnDestroy() {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { envConfig } from 'envConfig';
 import { BehaviorSubject, ReplaySubject, Subject, timeout } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class ChartService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
-      .get(envConfig.baseUrl + 'chart', { headers: headers })
+      .get(environment.api + 'chart', { headers: headers })
       .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {

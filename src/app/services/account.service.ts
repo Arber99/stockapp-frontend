@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject, timeout } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +24,11 @@ export class AccountService {
 
   accountLoaded = new BehaviorSubject<boolean>(true);
   loginLoaded = new BehaviorSubject<boolean>(true);
+  loginFailed = new BehaviorSubject<boolean>(false);
 
   async signUp(dto: any) {
     await this.http
-      .post<any>(envConfig.baseUrl + 'auth/signup', dto)
+      .post<any>(environment.api + 'auth/signup', dto)
       .pipe(timeout(15000))
       .subscribe((data) => {
         this.redirectDashboard(data.access_token);
@@ -36,11 +38,17 @@ export class AccountService {
   async logIn(dto: any) {
     this.loginLoaded.next(false);
     await this.http
-      .post<any>(envConfig.baseUrl + 'auth/signin', dto)
+      .post<any>(environment.api + 'auth/signin', dto)
       .pipe(timeout(15000))
-      .subscribe((data) => {
-        this.redirectDashboard(data.access_token);
-        this.loginLoaded.next(true);
+      .subscribe({
+        next: (data) => {
+          this.redirectDashboard(data.access_token);
+          this.loginLoaded.next(true);
+        },
+        error: (error) => {
+          this.loginLoaded.next(true);
+          this.loginFailed.next(true);
+        }
       });
   }
 
@@ -61,7 +69,7 @@ export class AccountService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
-      .get(envConfig.baseUrl + 'users/me', { headers: headers })
+      .get(environment.api + 'users/me', { headers: headers })
       .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {
@@ -88,7 +96,7 @@ export class AccountService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
-      .get(envConfig.baseUrl + 'stocks', { headers: headers })
+      .get(environment.api + 'stocks', { headers: headers })
       .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {
@@ -109,7 +117,7 @@ export class AccountService {
       Authorization: `Bearer ${this.auth.getToken()}`,
     });
     this.http
-      .delete(envConfig.baseUrl + 'users/delete', { headers: headers })
+      .delete(environment.api + 'users/delete', { headers: headers })
       .pipe(timeout(15000))
       .subscribe({
         next: (data: any) => {

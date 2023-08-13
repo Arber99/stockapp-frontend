@@ -37,7 +37,7 @@
         <button
           type="submit"
           value="submit"
-          class="text-white p-2 pl-3 pr-3 mt-4 font-bold bg-black w-min"
+          class="text-white p-2 pl-3 pr-3 mt-4 font-bold bg-gray-900 w-min"
           [ngClass]="loginLoaded ? '' : 'opacity-50'"
           [disabled]="!loginLoaded"
         >
@@ -52,6 +52,7 @@
           ></mat-progress-spinner>
         </div>
       </div>
+      <span class="text-red-800" *ngIf="loginFailed">Login failed, please try again</span>
     </form>
   </div>
 </div>
