@@ -9,7 +9,7 @@ env:
   NODE_VERSION: 16
 
 jobs:
-  build:
+  Angular:
     runs-on: ubuntu-latest
 
     steps:
