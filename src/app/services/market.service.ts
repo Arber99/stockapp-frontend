@@ -29,8 +29,9 @@ export class MarketService {
         },
         error: (error) => {
           console.warn('Could not load market data.');
-
-          this.auth.flushToken();
+          if (this.auth.isExpired()) {
+            this.auth.flushToken();
+          }
         },
       });
   }

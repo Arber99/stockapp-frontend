@@ -83,6 +83,7 @@ export class AccountService {
           console.warn('Could not get account data');
 
           this.auth.flushToken();
+          this.isAuthorized.next(false);
           this.accountLoaded.next(true);
         },
       });
@@ -102,7 +103,7 @@ export class AccountService {
         },
         error: () => {
           console.warn('Could not load stock data.');
-
+          this.isAuthorized.next(false);
           this.auth.flushToken();
         },
       });

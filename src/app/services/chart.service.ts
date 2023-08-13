@@ -33,7 +33,9 @@ export class ChartService {
         error: (error) => {
           console.warn('Could not load chart data.');
           this.chart.error(error);
-          this.auth.flushToken();
+          if (this.auth.isExpired()) {
+            this.auth.flushToken();
+          }
         },
       });
   }
